@@ -30,7 +30,6 @@ public class AtendenteModel {
 	@Column(name = "nome")
 	private String nome;
 	
-	@NotEmpty
 	@Column(name = "data_nascimento")
 	private Date data_nascimento;
 	

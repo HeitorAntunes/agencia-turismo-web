@@ -1,15 +1,24 @@
 package br.uniceub.pidi.model;
 
+import java.io.Serializable;
 import java.util.Date;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "tb_gerente")
@@ -30,7 +39,6 @@ public class GerenteModel {
 	@Column(name = "nome")
 	private String nome;
 	
-	@NotEmpty
 	@Column(name = "data_nascimento")
 	private Date data_nascimento;
 	
@@ -74,9 +82,13 @@ public class GerenteModel {
 	@Column(name = "email")
 	private String email;
 	
-	@NotEmpty
-	@Column(name = "id")
-	private Long id;
+	@JoinColumn(name = "id", unique = true)
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private UserModel user;
+	
+	@JsonIgnore
+	@OneToMany(mappedBy = "gerente", cascade = CascadeType.ALL)
+	private Set<FinanceiroModel> financeiro;
 
 	public Long getId_gerente() {
 		return id_gerente;
@@ -174,12 +186,14 @@ public class GerenteModel {
 		this.email = email;
 	}
 
-	public Long getId() {
-		return id;
+	public UserModel getUser() {
+		return user;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+	public void setUser(UserModel user) {
+		this.user = user;
 	}
+
+
 
 }
