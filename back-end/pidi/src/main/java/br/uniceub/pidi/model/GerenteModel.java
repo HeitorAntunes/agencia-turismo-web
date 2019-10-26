@@ -12,6 +12,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -82,9 +83,11 @@ public class GerenteModel {
 	@Column(name = "email")
 	private String email;
 	
-	@JoinColumn(name = "id", unique = true)
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private UserModel user;
+//	@JoinColumn(name = "id", unique = true)
+//    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@ManyToOne
+	@JoinColumn(name = "id")
+	private UserModel user;
 	
 	@JsonIgnore
 	@OneToMany(mappedBy = "gerente", cascade = CascadeType.ALL)

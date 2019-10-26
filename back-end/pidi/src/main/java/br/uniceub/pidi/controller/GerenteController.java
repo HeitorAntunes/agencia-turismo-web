@@ -34,7 +34,7 @@ public class GerenteController {
 		return repository.findAll();
 	}
 
-	@GetMapping("/{id_gerente")
+	@GetMapping("/{id_gerente}")
 	public ResponseEntity<GerenteModel> get(@PathVariable Long id_gerente) {
 		Optional<GerenteModel> gerente = repository.findById(id_gerente);
 
