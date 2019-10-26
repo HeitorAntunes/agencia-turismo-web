@@ -19,63 +19,62 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
-import br.uniceub.pidi.model.UserModel;
-import br.uniceub.pidi.repository.UserRepository;
+import br.uniceub.pidi.model.GerenteModel;
+import br.uniceub.pidi.repository.GerenteRepository;
 
-//@CrossOrigin("http://localhost:4200")
 @RestController
-@RequestMapping("/user")
-public class UserController {
+@RequestMapping("/gerente")
+public class GerenteController {
 
 	@Autowired
-	private UserRepository repository;
+	private GerenteRepository repository;
 
 	@GetMapping
-	public List<UserModel> list() {
+	private List<GerenteModel> list() {
 		return repository.findAll();
 	}
 
-	@GetMapping("/{id}")
-	public ResponseEntity<UserModel> get(@PathVariable Long id) {
-		Optional<UserModel> user = repository.findById(id);
+	@GetMapping("/{id_gerente")
+	public ResponseEntity<GerenteModel> get(@PathVariable Long id_gerente) {
+		Optional<GerenteModel> gerente = repository.findById(id_gerente);
 
-		if (user == null) {
+		if (gerente == null) {
 			return ResponseEntity.notFound().build();
 		}
 
-		return ResponseEntity.ok(user.get());
+		return ResponseEntity.ok(gerente.get());
 	}
 
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
-	public UserModel create(@Valid @RequestBody UserModel user) {
-		Optional<UserModel> existingUser = repository.findById(user.getId());
+	public GerenteModel create(@Valid @RequestBody GerenteModel gerente) {
+		Optional<GerenteModel> existingGerente = repository.findByNome(gerente.getNome());
 
-		if (existingUser.isPresent()) {
+		if (existingGerente.isPresent()) {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST,
-					"Já existe um User com este username");
+					"Já existe um Gerente com este CPF");
 		}
 
-		return repository.save(user);
+		return repository.save(gerente);
 	}
 
 	@PutMapping
 	@ResponseStatus(HttpStatus.ACCEPTED)
-	public ResponseEntity<UserModel> update(@Valid @RequestBody UserModel user) {
-		Optional<UserModel> newUser = repository.findById(user.getId());
+	public ResponseEntity<GerenteModel> update(@Valid @RequestBody GerenteModel gerente) {
+		Optional<GerenteModel> newGerente = repository.findByNome(gerente.getNome());
 
-		if (newUser == null) {
+		if (newGerente == null) {
 			return ResponseEntity.notFound().build();
 		} else {
-			this.repository.save(user);
+			this.repository.save(gerente);
 			return ResponseEntity.ok().build();
 		}
 	}
 
-	@DeleteMapping("/{id}")
+	@DeleteMapping("/{id_gerente}")
 	@ResponseStatus(HttpStatus.OK)
-	public ResponseEntity<UserModel> delete(@PathVariable Long id) {
-		repository.deleteById(id);
+	public ResponseEntity<GerenteModel> delete(@PathVariable Long id_gerente) {
+		repository.deleteById(id_gerente);
 		return ResponseEntity.ok().build();
 	}
 

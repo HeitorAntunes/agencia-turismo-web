@@ -19,63 +19,62 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
-import br.uniceub.pidi.model.UserModel;
-import br.uniceub.pidi.repository.UserRepository;
+import br.uniceub.pidi.model.AtendenteModel;
+import br.uniceub.pidi.repository.AtendenteRepository;
 
-//@CrossOrigin("http://localhost:4200")
 @RestController
-@RequestMapping("/user")
-public class UserController {
+@RequestMapping("/atendente")
+public class AtendenteController {
 
 	@Autowired
-	private UserRepository repository;
+	private AtendenteRepository repository;
 
 	@GetMapping
-	public List<UserModel> list() {
+	private List<AtendenteModel> list() {
 		return repository.findAll();
 	}
 
-	@GetMapping("/{id}")
-	public ResponseEntity<UserModel> get(@PathVariable Long id) {
-		Optional<UserModel> user = repository.findById(id);
+	@GetMapping("/{id_atendente}")
+	public ResponseEntity<AtendenteModel> get(@PathVariable Long id_atendente) {
+		Optional<AtendenteModel> atendente = repository.findById(id_atendente);
 
-		if (user == null) {
+		if (atendente == null) {
 			return ResponseEntity.notFound().build();
 		}
 
-		return ResponseEntity.ok(user.get());
+		return ResponseEntity.ok(atendente.get());
 	}
 
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
-	public UserModel create(@Valid @RequestBody UserModel user) {
-		Optional<UserModel> existingUser = repository.findById(user.getId());
+	public AtendenteModel create(@Valid @RequestBody AtendenteModel atendente) {
+		Optional<AtendenteModel> existingAtendente = repository.findByCpf(atendente.getCpf());
 
-		if (existingUser.isPresent()) {
+		if (existingAtendente.isPresent()) {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST,
-					"Já existe um User com este username");
+					"Já existe um Atendente com este CPF");
 		}
 
-		return repository.save(user);
+		return repository.save(atendente);
 	}
 
 	@PutMapping
 	@ResponseStatus(HttpStatus.ACCEPTED)
-	public ResponseEntity<UserModel> update(@Valid @RequestBody UserModel user) {
-		Optional<UserModel> newUser = repository.findById(user.getId());
+	public ResponseEntity<AtendenteModel> update(@Valid @RequestBody AtendenteModel atendente) {
+		Optional<AtendenteModel> newAtendente = repository.findByCpf(atendente.getCpf());
 
-		if (newUser == null) {
+		if (newAtendente == null) {
 			return ResponseEntity.notFound().build();
 		} else {
-			this.repository.save(user);
+			this.repository.save(atendente);
 			return ResponseEntity.ok().build();
 		}
 	}
 
-	@DeleteMapping("/{id}")
+	@DeleteMapping("/{id_atendente}")
 	@ResponseStatus(HttpStatus.OK)
-	public ResponseEntity<UserModel> delete(@PathVariable Long id) {
-		repository.deleteById(id);
+	public ResponseEntity<AtendenteModel> delete(@PathVariable Long id_atendente) {
+		repository.deleteById(id_atendente);
 		return ResponseEntity.ok().build();
 	}
 

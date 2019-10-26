@@ -19,64 +19,63 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
-import br.uniceub.pidi.model.UserModel;
-import br.uniceub.pidi.repository.UserRepository;
+import br.uniceub.pidi.model.FinanceiroModel;
+import br.uniceub.pidi.repository.FinanceiroRepository;
 
-//@CrossOrigin("http://localhost:4200")
 @RestController
-@RequestMapping("/user")
-public class UserController {
-
+@RequestMapping("/financeiro")
+public class FinanceiroController {
+	
 	@Autowired
-	private UserRepository repository;
+	private FinanceiroRepository repository;
 
 	@GetMapping
-	public List<UserModel> list() {
+	private List<FinanceiroModel> list() {
 		return repository.findAll();
 	}
 
-	@GetMapping("/{id}")
-	public ResponseEntity<UserModel> get(@PathVariable Long id) {
-		Optional<UserModel> user = repository.findById(id);
+	@GetMapping("/{id_financeiro")
+	public ResponseEntity<FinanceiroModel> get(@PathVariable Long id_financeiro) {
+		Optional<FinanceiroModel> financeiro = repository.findById(id_financeiro);
 
-		if (user == null) {
+		if (financeiro == null) {
 			return ResponseEntity.notFound().build();
 		}
 
-		return ResponseEntity.ok(user.get());
+		return ResponseEntity.ok(financeiro.get());
 	}
 
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
-	public UserModel create(@Valid @RequestBody UserModel user) {
-		Optional<UserModel> existingUser = repository.findById(user.getId());
+	public FinanceiroModel create(@Valid @RequestBody FinanceiroModel financeiro) {
+		Optional<FinanceiroModel> existingFinanceiro = repository.findById(financeiro.getId_financeiro());
 
-		if (existingUser.isPresent()) {
+		if (existingFinanceiro.isPresent()) {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST,
-					"Já existe um User com este username");
+					"Já existe um Financeiro com este CPF");
 		}
 
-		return repository.save(user);
+		return repository.save(financeiro);
 	}
 
 	@PutMapping
 	@ResponseStatus(HttpStatus.ACCEPTED)
-	public ResponseEntity<UserModel> update(@Valid @RequestBody UserModel user) {
-		Optional<UserModel> newUser = repository.findById(user.getId());
-
-		if (newUser == null) {
+	public ResponseEntity<FinanceiroModel> update(@Valid @RequestBody FinanceiroModel financeiro) {
+		Optional<FinanceiroModel> newFinanceiro = repository.findById(financeiro.getId_financeiro());
+		if (newFinanceiro == null) {
 			return ResponseEntity.notFound().build();
 		} else {
-			this.repository.save(user);
+			this.repository.save(financeiro);
 			return ResponseEntity.ok().build();
 		}
 	}
 
-	@DeleteMapping("/{id}")
+	@DeleteMapping("/{id_financeiro}")
 	@ResponseStatus(HttpStatus.OK)
-	public ResponseEntity<UserModel> delete(@PathVariable Long id) {
-		repository.deleteById(id);
+	public ResponseEntity<FinanceiroModel> delete(@PathVariable Long id_financeiro) {
+		repository.deleteById(id_financeiro);
 		return ResponseEntity.ok().build();
 	}
+
 
 }

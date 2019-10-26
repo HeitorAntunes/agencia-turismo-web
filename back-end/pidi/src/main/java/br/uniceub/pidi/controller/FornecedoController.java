@@ -19,63 +19,62 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
-import br.uniceub.pidi.model.UserModel;
-import br.uniceub.pidi.repository.UserRepository;
+import br.uniceub.pidi.model.FornecedorModel;
+import br.uniceub.pidi.repository.FornecedorRepository;
 
-//@CrossOrigin("http://localhost:4200")
 @RestController
-@RequestMapping("/user")
-public class UserController {
+@RequestMapping("/fornecedor")
+public class FornecedoController {
 
 	@Autowired
-	private UserRepository repository;
+	private FornecedorRepository repository;
 
 	@GetMapping
-	public List<UserModel> list() {
+	private List<FornecedorModel> list() {
 		return repository.findAll();
 	}
 
-	@GetMapping("/{id}")
-	public ResponseEntity<UserModel> get(@PathVariable Long id) {
-		Optional<UserModel> user = repository.findById(id);
+	@GetMapping("/{id_fornecedor")
+	public ResponseEntity<FornecedorModel> get(@PathVariable Long id_fornecedor) {
+		Optional<FornecedorModel> fornecedor = repository.findById(id_fornecedor);
 
-		if (user == null) {
+		if (fornecedor == null) {
 			return ResponseEntity.notFound().build();
 		}
 
-		return ResponseEntity.ok(user.get());
+		return ResponseEntity.ok(fornecedor.get());
 	}
 
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
-	public UserModel create(@Valid @RequestBody UserModel user) {
-		Optional<UserModel> existingUser = repository.findById(user.getId());
+	public FornecedorModel create(@Valid @RequestBody FornecedorModel fornecedor) {
+		Optional<FornecedorModel> existingFornecedor = repository.findByNome(fornecedor.getNome());
 
-		if (existingUser.isPresent()) {
+		if (existingFornecedor.isPresent()) {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST,
-					"Já existe um User com este username");
+					"Já existe um Fornecedor com este CNPJ");
 		}
 
-		return repository.save(user);
+		return repository.save(fornecedor);
 	}
 
 	@PutMapping
 	@ResponseStatus(HttpStatus.ACCEPTED)
-	public ResponseEntity<UserModel> update(@Valid @RequestBody UserModel user) {
-		Optional<UserModel> newUser = repository.findById(user.getId());
+	public ResponseEntity<FornecedorModel> update(@Valid @RequestBody FornecedorModel fornecedor) {
+		Optional<FornecedorModel> newFornecedor = repository.findByNome(fornecedor.getNome());
 
-		if (newUser == null) {
+		if (newFornecedor == null) {
 			return ResponseEntity.notFound().build();
 		} else {
-			this.repository.save(user);
+			this.repository.save(fornecedor);
 			return ResponseEntity.ok().build();
 		}
 	}
 
-	@DeleteMapping("/{id}")
+	@DeleteMapping("/{id_fornecedor}")
 	@ResponseStatus(HttpStatus.OK)
-	public ResponseEntity<UserModel> delete(@PathVariable Long id) {
-		repository.deleteById(id);
+	public ResponseEntity<FornecedorModel> delete(@PathVariable Long id_fornecedor) {
+		repository.deleteById(id_fornecedor);
 		return ResponseEntity.ok().build();
 	}
 
