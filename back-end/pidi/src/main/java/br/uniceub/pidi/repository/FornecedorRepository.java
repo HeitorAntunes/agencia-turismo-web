@@ -9,6 +9,6 @@ import br.uniceub.pidi.model.FornecedorModel;
 public interface FornecedorRepository extends JpaRepository<FornecedorModel, Long> {
 	
 	Optional<FornecedorModel> findByNome (String nome);
-	Optional<FornecedorModel> findByCpf (String cpf);
+	Optional<FornecedorModel> findByCnpj (String cnpj);
 
 }

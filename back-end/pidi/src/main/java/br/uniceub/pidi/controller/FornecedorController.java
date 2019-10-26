@@ -24,7 +24,7 @@ import br.uniceub.pidi.repository.FornecedorRepository;
 
 @RestController
 @RequestMapping("/fornecedor")
-public class FornecedoController {
+public class FornecedorController {
 
 	@Autowired
 	private FornecedorRepository repository;

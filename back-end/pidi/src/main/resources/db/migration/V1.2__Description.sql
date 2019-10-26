@@ -74,7 +74,7 @@ CREATE TABLE TB_FINANCEIRO(
     id_financeiro serial PRIMARY KEY,
     data date NOT NULL,
     descricao VARCHAR(500) NOT NULL,
-    valor double NOT NULL,
+    valor double precision NOT NULL,
     tipo boolean NOT NULL,
     id_gerente integer NOT NULL,
     CONSTRAINT tb_financeiro_gerente_fkey FOREIGN KEY(id_gerente)
@@ -84,7 +84,7 @@ CREATE TABLE TB_FINANCEIRO(
 CREATE TABLE TB_ORDEM_SERVICO(
     id_ordem_servico serial PRIMARY KEY,
     descricao VARCHAR(500) NOT NULL,
-    valor double NOT NULL,
+    valor double precision NOT NULL,
     status boolean NOT NULL,
     id_atendente integer NOT NULL,
     id_fornecedor integer NOT NULL,
