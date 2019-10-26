@@ -20,7 +20,6 @@ public class FinanceiroModel {
 	private Long id_financeiro;
 	
 	@NotEmpty
-	@Size
 	@Column(name = "data")
 	private Date data;
 	
@@ -30,19 +29,16 @@ public class FinanceiroModel {
 	private String descricao;
 	
 	@NotEmpty
-	@Size
 	@Column(name = "valor")
 	private Double valor;
 	
 	@NotEmpty
-	@Size
 	@Column(name = "tipo")
 	private boolean tipo;
 	
 	@NotEmpty
-	@Size
 	@Column(name = "id_gerente")
-	private Integer id_gerente;
+	private Long id_gerente;
 
 	public Long getId_financeiro() {
 		return id_financeiro;
@@ -84,11 +80,11 @@ public class FinanceiroModel {
 		this.tipo = tipo;
 	}
 
-	public Integer getId_gerente() {
+	public Long getId_gerente() {
 		return id_gerente;
 	}
 
-	public void setId_gerente(Integer id_gerente) {
+	public void setId_gerente(Long id_gerente) {
 		this.id_gerente = id_gerente;
 	}
 	

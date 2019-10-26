@@ -31,7 +31,6 @@ public class AtendenteModel {
 	private String nome;
 	
 	@NotEmpty
-	@Size
 	@Column(name = "data_nascimento")
 	private Date data_nascimento;
 	
@@ -76,9 +75,8 @@ public class AtendenteModel {
 	private String email;
 	
 	@NotEmpty
-	@Size
 	@Column(name = "id")
-	private Integer id;
+	private Long id;
 
 	public Long getId_atendente() {
 		return id_atendente;
@@ -176,11 +174,11 @@ public class AtendenteModel {
 		this.email = email;
 	}
 
-	public Integer getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 	

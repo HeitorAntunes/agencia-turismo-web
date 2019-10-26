@@ -31,7 +31,6 @@ public class ClienteModel {
 	private String nome;
 	
 	@NotEmpty
-	@Size
 	@Column(name = "data_nascimento")
 	private Date data_nascimento;
 	

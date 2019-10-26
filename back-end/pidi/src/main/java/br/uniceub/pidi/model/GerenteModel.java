@@ -76,7 +76,7 @@ public class GerenteModel {
 	
 	@NotEmpty
 	@Column(name = "id")
-	private Integer id;
+	private Long id;
 
 	public Long getId_gerente() {
 		return id_gerente;
@@ -174,11 +174,11 @@ public class GerenteModel {
 		this.email = email;
 	}
 
-	public Integer getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
