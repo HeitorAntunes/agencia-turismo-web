@@ -34,7 +34,7 @@ public class OrdemServicoController {
 		return repository.findAll();
 	}
 
-	@GetMapping("/{id_ordem_Servico")
+	@GetMapping("/{id_ordem_servico}")
 	public ResponseEntity<OrdemServicoModel> get(@PathVariable Long id_ordem_servico) {
 		Optional<OrdemServicoModel> ordem_servico = repository.findById(id_ordem_servico);
 
@@ -44,6 +44,7 @@ public class OrdemServicoController {
 
 		return ResponseEntity.ok(ordem_servico.get());
 	}
+
 
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
@@ -70,7 +71,7 @@ public class OrdemServicoController {
 		}
 	}
 
-	@DeleteMapping("/{id_ordem_Servico}")
+	@DeleteMapping("/{id_ordem_servico}")
 	@ResponseStatus(HttpStatus.OK)
 	public ResponseEntity<OrdemServicoModel> delete(@PathVariable Long id_ordem_servico) {
 		repository.deleteById(id_ordem_servico);

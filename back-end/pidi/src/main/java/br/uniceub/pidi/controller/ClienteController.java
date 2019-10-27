@@ -34,7 +34,7 @@ public class ClienteController {
 		return repository.findAll();
 	}
 
-	@GetMapping("/{id_cliente")
+	@GetMapping("/{id_cliente}")
 	public ResponseEntity<ClienteModel> get(@PathVariable Long id_cliente) {
 		Optional<ClienteModel> cliente = repository.findById(id_cliente);
 
@@ -61,7 +61,7 @@ public class ClienteController {
 	@PutMapping
 	@ResponseStatus(HttpStatus.ACCEPTED)
 	public ResponseEntity<ClienteModel> update(@Valid @RequestBody ClienteModel cliente) {
-		Optional<ClienteModel> newCliente = repository.findByNome(cliente.getNome());
+		Optional<ClienteModel> newCliente = repository.findById(cliente.getId_cliente());
 
 		if (newCliente == null) {
 			return ResponseEntity.notFound().build();

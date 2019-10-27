@@ -34,7 +34,7 @@ public class FornecedorController {
 		return repository.findAll();
 	}
 
-	@GetMapping("/{id_fornecedor")
+	@GetMapping("/{id_fornecedor}")
 	public ResponseEntity<FornecedorModel> get(@PathVariable Long id_fornecedor) {
 		Optional<FornecedorModel> fornecedor = repository.findById(id_fornecedor);
 

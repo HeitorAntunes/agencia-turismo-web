@@ -1,15 +1,22 @@
 package br.uniceub.pidi.model;
 
 import java.util.Date;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "tb_atendente")
@@ -73,9 +80,13 @@ public class AtendenteModel {
 	@Column(name = "email")
 	private String email;
 	
-	@NotEmpty
-	@Column(name = "id")
-	private Long id;
+	@ManyToOne
+	@JoinColumn(name = "id")
+	private UserModel id;
+	
+	@JsonIgnore
+	@OneToMany(mappedBy = "atendente", cascade = CascadeType.ALL)
+	private Set<OrdemServicoModel> ordem_servico;
 
 	public Long getId_atendente() {
 		return id_atendente;
@@ -173,27 +184,20 @@ public class AtendenteModel {
 		this.email = email;
 	}
 
-	public Long getId() {
+	public UserModel getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(UserModel id) {
 		this.id = id;
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
+	public Set<OrdemServicoModel> getOrdem_servico() {
+		return ordem_servico;
+	}
+
+	public void setOrdem_servico(Set<OrdemServicoModel> ordem_servico) {
+		this.ordem_servico = ordem_servico;
+	}
 
 }

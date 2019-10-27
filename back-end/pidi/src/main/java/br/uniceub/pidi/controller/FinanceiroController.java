@@ -34,7 +34,7 @@ public class FinanceiroController {
 		return repository.findAll();
 	}
 
-	@GetMapping("/{id_financeiro")
+	@GetMapping("/{id_financeiro}")
 	public ResponseEntity<FinanceiroModel> get(@PathVariable Long id_financeiro) {
 		Optional<FinanceiroModel> financeiro = repository.findById(id_financeiro);
 

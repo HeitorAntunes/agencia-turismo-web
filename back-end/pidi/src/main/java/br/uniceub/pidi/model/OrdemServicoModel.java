@@ -5,8 +5,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
@@ -17,31 +20,30 @@ public class OrdemServicoModel {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_ordem_servico")
 	private Long id_ordem_servico;
-	
+
 	@NotEmpty
 	@Size(max = 500)
 	@Column(name = "descricao")
 	private String descricao;
-	
-	@NotEmpty
+
+	@NotNull
 	@Column(name = "valor")
 	private Double valor;
-	
-	@NotEmpty
+
 	@Column(name = "status")
 	private boolean status;
+
+	@ManyToOne
+	@JoinColumn(name = "id_cliente")
+	private ClienteModel cliente;
 	
-	@NotEmpty
-	@Column(name = "id_atendente")
-	private Long id_atendente;
+	@ManyToOne
+	@JoinColumn(name = "id_atendente")
+	private AtendenteModel atendente;
 	
-	@NotEmpty
-	@Column(name = "id_fornecedor")
-	private Long id_fornecedor;
-	
-	@NotEmpty
-	@Column(name = "id_cliente")
-	private Long id_cliente;
+	@ManyToOne
+	@JoinColumn(name = "id_fornecedor")
+	private FornecedorModel fornecedor;
 
 	public Long getId_ordem_servico() {
 		return id_ordem_servico;
@@ -75,28 +77,29 @@ public class OrdemServicoModel {
 		this.status = status;
 	}
 
-	public Long getId_atendente() {
-		return id_atendente;
+
+	public ClienteModel getCliente() {
+		return cliente;
 	}
 
-	public void setId_atendente(Long id_atendente) {
-		this.id_atendente = id_atendente;
+	public void setCliente(ClienteModel cliente) {
+		this.cliente = cliente;
 	}
 
-	public Long getId_fornecedor() {
-		return id_fornecedor;
+	public FornecedorModel getFornecedor() {
+		return fornecedor;
 	}
 
-	public void setId_fornecedor(Long id_fornecedor) {
-		this.id_fornecedor = id_fornecedor;
+	public void setFornecedor(FornecedorModel fornecedor) {
+		this.fornecedor = fornecedor;
 	}
 
-	public Long getId_cliente() {
-		return id_cliente;
+	public AtendenteModel getAtendente() {
+		return atendente;
 	}
 
-	public void setId_cliente(Long id_cliente) {
-		this.id_cliente = id_cliente;
+	public void setAtendente(AtendenteModel atendente) {
+		this.atendente = atendente;
 	}
-	
+
 }

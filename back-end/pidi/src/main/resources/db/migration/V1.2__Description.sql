@@ -64,9 +64,9 @@ CREATE TABLE TB_FORNECEDOR(
     telefone VARCHAR(15) NOT NULL,
     endereco VARCHAR(70) NOT NULL,
     cep VARCHAR(8) NOT NULL,
-    cidade VARCHAR(2) NOT NULL,
+    cidade VARCHAR(50) NOT NULL,
     bairro VARCHAR(50) NOT NULL,
-    estado VARCHAR(50) NOT NULL,
+    estado VARCHAR(2) NOT NULL,
     email VARCHAR(50) NOT NULL
 );
 
