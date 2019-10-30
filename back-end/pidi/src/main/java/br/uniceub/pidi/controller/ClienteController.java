@@ -48,7 +48,7 @@ public class ClienteController {
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
 	public ClienteModel create(@Valid @RequestBody ClienteModel cliente) {
-		Optional<ClienteModel> existingCliente = repository.findByNome(cliente.getNome());
+		Optional<ClienteModel> existingCliente = repository.findById(cliente.getId_cliente());
 
 		if (existingCliente.isPresent()) {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST,

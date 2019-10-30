@@ -8,8 +8,8 @@ import br.uniceub.pidi.model.GerenteModel;
 
 public interface GerenteRepository extends JpaRepository<GerenteModel, Long> {
 	
-	Optional<GerenteModel> findByNome(String nome);
-	Optional<GerenteModel> findByCpf(String cpf);
+	Optional<GerenteModel> findById(Long id_gerente);
+//	Optional<GerenteModel> findByCpf(String cpf);
 	
 	
 	

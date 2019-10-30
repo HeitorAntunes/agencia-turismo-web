@@ -9,7 +9,7 @@ import br.uniceub.pidi.model.ClienteModel;
 public interface ClienteRepository extends JpaRepository<ClienteModel, Long>{
 	
 	Optional<ClienteModel> findById(Long id_cliente);
-	Optional<ClienteModel> findByNome (String nome);
+//	Optional<ClienteModel> findByNome (String nome);
 	
 
 }

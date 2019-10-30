@@ -48,7 +48,7 @@ public class AtendenteController {
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
 	public AtendenteModel create(@Valid @RequestBody AtendenteModel atendente) {
-		Optional<AtendenteModel> existingAtendente = repository.findByCpf(atendente.getCpf());
+		Optional<AtendenteModel> existingAtendente = repository.findById(atendente.getId_atendente());
 
 		if (existingAtendente.isPresent()) {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST,
@@ -61,7 +61,7 @@ public class AtendenteController {
 	@PutMapping
 	@ResponseStatus(HttpStatus.ACCEPTED)
 	public ResponseEntity<AtendenteModel> update(@Valid @RequestBody AtendenteModel atendente) {
-		Optional<AtendenteModel> newAtendente = repository.findByCpf(atendente.getCpf());
+		Optional<AtendenteModel> newAtendente = repository.findById(atendente.getId_atendente());
 
 		if (newAtendente == null) {
 			return ResponseEntity.notFound().build();

@@ -8,6 +8,6 @@ import br.uniceub.pidi.model.OrdemServicoModel;
 
 public interface OrdemServicoRepository extends JpaRepository<OrdemServicoModel, Long> {
 	
-	Optional<OrdemServicoModel> findById (Long id_ordem_servico);
+	Optional<OrdemServicoModel> findById(Long id_ordem_servico);
 
 }

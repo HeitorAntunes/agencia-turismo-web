@@ -48,7 +48,7 @@ public class GerenteController {
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
 	public GerenteModel create(@Valid @RequestBody GerenteModel gerente) {
-		Optional<GerenteModel> existingGerente = repository.findByNome(gerente.getNome());
+		Optional<GerenteModel> existingGerente = repository.findById(gerente.getId_gerente());
 
 		if (existingGerente.isPresent()) {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST,
@@ -61,7 +61,7 @@ public class GerenteController {
 	@PutMapping
 	@ResponseStatus(HttpStatus.ACCEPTED)
 	public ResponseEntity<GerenteModel> update(@Valid @RequestBody GerenteModel gerente) {
-		Optional<GerenteModel> newGerente = repository.findByNome(gerente.getNome());
+		Optional<GerenteModel> newGerente = repository.findById(gerente.getId_gerente());
 
 		if (newGerente == null) {
 			return ResponseEntity.notFound().build();

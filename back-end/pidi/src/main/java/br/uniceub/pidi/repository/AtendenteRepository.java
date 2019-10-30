@@ -8,7 +8,7 @@ import br.uniceub.pidi.model.AtendenteModel;
 
 public interface AtendenteRepository extends JpaRepository<AtendenteModel, Long>{
 	
-	Optional<AtendenteModel> findByCpf (String cpf);
+	Optional<AtendenteModel> findById(Long id_atendente);
 	Optional<AtendenteModel> findByNome (String nome);
 
 }

@@ -80,8 +80,6 @@ public class GerenteModel {
 	@Column(name = "email")
 	private String email;
 	
-//	@JoinColumn(name = "id", unique = true)
-//    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@ManyToOne
 	@JoinColumn(name = "id")
 	private UserModel user;

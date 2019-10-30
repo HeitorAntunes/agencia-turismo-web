@@ -48,7 +48,7 @@ public class FornecedorController {
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
 	public FornecedorModel create(@Valid @RequestBody FornecedorModel fornecedor) {
-		Optional<FornecedorModel> existingFornecedor = repository.findByNome(fornecedor.getNome());
+		Optional<FornecedorModel> existingFornecedor = repository.findById(fornecedor.getId_fornecedor());
 
 		if (existingFornecedor.isPresent()) {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST,
@@ -61,7 +61,7 @@ public class FornecedorController {
 	@PutMapping
 	@ResponseStatus(HttpStatus.ACCEPTED)
 	public ResponseEntity<FornecedorModel> update(@Valid @RequestBody FornecedorModel fornecedor) {
-		Optional<FornecedorModel> newFornecedor = repository.findByNome(fornecedor.getNome());
+		Optional<FornecedorModel> newFornecedor = repository.findById(fornecedor.getId_fornecedor());
 
 		if (newFornecedor == null) {
 			return ResponseEntity.notFound().build();
