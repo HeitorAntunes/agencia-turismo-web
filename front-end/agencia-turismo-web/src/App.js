@@ -3,7 +3,8 @@ import logo from './logo.svg';
 import './App.css';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import LoginScreen from "./screens/LoginScreen/LoginScreen";
-import LogadoSreen from './screens/LogadoSreen/LogadoSreen';
+import LogadoScreen from './screens/LogadoScreen/LogadoScreen';
+import CadastroScreen from "./screens/CadastroScreen/CadastroScreen";
 
 
 function App() {
@@ -12,7 +13,8 @@ function App() {
       <div>
         <Switch>
           <Route exact path="/" component={LoginScreen} />
-          <Route path="/logado" component={LogadoSreen}/>
+          <Route path="/logado" component={LogadoScreen}/>
+          <Route path="/cadastro" component={CadastroScreen}/>
         </Switch>
       </div>
     </Router>

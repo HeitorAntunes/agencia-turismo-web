@@ -1,9 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
-import styles from "./LogadoSreen.module.css";
+import styles from "./CadastroScreen.module.css";
 import HeaderComponent from "../../components/HeaderComponent/HeaderComponent";
 
-const LogadoSreen = () => (
+const CadastroScreen = () => (
   <div>
     <HeaderComponent> </HeaderComponent>
     <div className={styles.background}>
@@ -15,8 +15,8 @@ const LogadoSreen = () => (
   </div>
 );
 
-LogadoSreen.propTypes = {};
+CadastroScreen.propTypes = {};
 
-LogadoSreen.defaultProps = {};
+CadastroScreen.defaultProps = {};
 
-export default LogadoSreen;
+export default CadastroScreen;
