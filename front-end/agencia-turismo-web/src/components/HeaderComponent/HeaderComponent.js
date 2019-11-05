@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styles from "./HeaderComponent.module.css";
-import airplane from "../../assets/aeroplane.svg";
+import airplane from "../../assets/flight-24px.svg";
 import user from "../../assets/person-24px.svg";
 
 const HeaderComponent = () => (
@@ -12,7 +12,7 @@ const HeaderComponent = () => (
         <span className={styles.sisat}> SISAT </span>
       </div>
 
-      <div className={styles.nome}> <img className={styles.user} src={user}></img> <span>Heitor</span></div>
+      <div className={styles.nome}> <img className={user} src={user}></img> <span>Heitor</span></div>
     </div>
     <div>
       <div className={styles.menu}>

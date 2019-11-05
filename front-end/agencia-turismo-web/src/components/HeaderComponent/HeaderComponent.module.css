@@ -14,10 +14,8 @@
     align-items: center;
 }
 
-.user {
-
-    
-}
+/* .user {
+} */
 
 .airplane {
     margin: 20px;
@@ -28,6 +26,7 @@
     font-size: 35px;
     font-weight: 700;
     color: rgb(111, 36, 180);
+    cursor: pointer;
 }
 
 .nome {
