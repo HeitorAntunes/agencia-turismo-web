@@ -18,7 +18,7 @@ const LoginScreen = ({ history }) => {
     setValues({ ...values, [prop]: event.target.value });
   };
 
-  const changeScreen2 = (prop) => {
+  const changeScreen = prop => {
     debugger;
     history.push(prop);
   };
@@ -47,10 +47,16 @@ const LoginScreen = ({ history }) => {
           value={values.senha}
         />
 
-        <button className={styles.button} onClick={() => changeScreen2("logado")}>
+        <button
+          className={styles.button}
+          onClick={() => changeScreen("logado")}
+        >
           Entrar
         </button>
-        <button className={styles.button} onClick={() => changeScreen2("cadastro")}>
+        <button
+          className={styles.button}
+          onClick={() => changeScreen("cadastro")}
+        >
           Cadastre-se
         </button>
         <span className={styles.esqueceu}>Esqueceu sua senha?</span>
