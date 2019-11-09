@@ -8,16 +8,19 @@ import { withRouter } from "react-router";
 
 const LogadoScreen = () => {
   let match = useRouteMatch();
+
+  const [title, setTitle] = React.useState("")
+
   return (
     <div>
       <HeaderComponent> </HeaderComponent>
       <div className={styles.background}>
         <div className={styles.content}>
-          <div className={styles.title}> CADASTRO </div>
+          <div className={styles.title}> {title} </div>
           <div className={styles.secondBackground}>
             <Switch>
               <Route path={`${match.path}/gerente`}>
-                <CadastroGerenteComponent />
+                <CadastroGerenteComponent setTitle={setTitle}/>
               </Route>
             </Switch>
           </div>

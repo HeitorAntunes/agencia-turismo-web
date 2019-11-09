@@ -1,10 +1,10 @@
-import React from "react";
+import React, {useEffect} from "react";
 import PropTypes from "prop-types";
 import styles from "./CadastroGerenteComponent.module.css";
 import InputField from "../../../../components/InputField/InputField";
 import LogadoScreen from "../../LogadoScreen";
 
-const CadastroGerenteComponent = () => {
+const CadastroGerenteComponent = ({setTitle}) => {
   const [values, setValues] = React.useState({
     nome: "",
     senha: ""
@@ -14,6 +14,10 @@ const CadastroGerenteComponent = () => {
     console.log(values);
     setValues({ ...values, [prop]: event.target.value });
   };
+
+  useEffect(() => {
+    setTitle("CADASTRO GERENTE");
+  }, []);
 
   return (
     <div>
