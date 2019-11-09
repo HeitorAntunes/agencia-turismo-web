@@ -7,7 +7,6 @@ import LogadoScreen from "../LogadoScreen/LogadoScreen";
 const CadastroScreen = () => (
   <div>
     <LogadoScreen> </LogadoScreen>
-
   </div>
 );
 

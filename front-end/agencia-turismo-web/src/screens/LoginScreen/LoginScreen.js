@@ -7,21 +7,21 @@ import passwordIcon from "../../assets/lock-24px.svg";
 import flightIcon from "../../assets/aeroplane.svg";
 import { withRouter } from "react-router-dom";
 
-
-const LoginScreen = ({history}) => {
+const LoginScreen = ({ history }) => {
   const [values, setValues] = React.useState({
     email: "",
     senha: ""
   });
 
   const handleChange = prop => event => {
-    console.log(values)
+    console.log(values);
     setValues({ ...values, [prop]: event.target.value });
   };
 
-  const changeScreen = (prop) => {
-    history.push(prop)
-  }
+  const changeScreen = prop => {
+    debugger;
+    history.push(prop);
+  };
 
   return (
     <div className={styles.LoginScreen}>
@@ -30,12 +30,35 @@ const LoginScreen = ({history}) => {
       </div>
       <span className={styles.logoName}>SISAT</span>
       <div>
-        <InputField text={"E-mail"} type="text" icon={personIcon} handleChange={handleChange} field={"email"} value={values.email}/>
-        <InputField text={"Senha"} type="password" icon={passwordIcon} handleChange={handleChange} field={"senha"} value={values.senha}/>
+        <InputField
+          text={"E-mail"}
+          type="text"
+          icon={personIcon}
+          handleChange={handleChange}
+          field={"email"}
+          value={values.email}
+        />
+        <InputField
+          text={"Senha"}
+          type="password"
+          icon={passwordIcon}
+          handleChange={handleChange}
+          field={"senha"}
+          value={values.senha}
+        />
 
-        {/* <button className={styles.button} onClick={changeScreen('logado')}>Entrar</button> */}
-        {/* <button className={styles.button} onClick={changeScreen('cadastro')}>Cadastre-se</button> */}
-
+        <button
+          className={styles.button}
+          onClick={() => changeScreen("logado")}
+        >
+          Entrar
+        </button>
+        <button
+          className={styles.button}
+          onClick={() => changeScreen("cadastro")}
+        >
+          Cadastre-se
+        </button>
         <span className={styles.esqueceu}>Esqueceu sua senha?</span>
       </div>
     </div>

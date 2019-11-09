@@ -1,41 +1,39 @@
 .LoginScreen {
-    height: 100%;
-    width: 100%;
-    /* margin: 0px 20% 0px 20%; */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin-top: 15%;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 15%;
 }
 
 .icon {
-    height: 100px;
-    width: 100px;
+  height: 100px;
+  width: 100px;
 }
 
 .button {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    background-color: rgb(111, 36, 180);
-    color: #ffffff;
-    height: 20px;
-    margin: 3px 0px;
-    cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  background-color: rgb(111, 36, 180);
+  color: #ffffff;
+  height: 20px;
+  margin: 3px 0px;
+  cursor: pointer;
 }
 
 .esqueceu {
-    color: rgb(111, 36, 180);
-    text-align: left;
-    font-size: 14px;
-    cursor: pointer;
+  color: rgb(111, 36, 180);
+  text-align: left;
+  font-size: 14px;
+  cursor: pointer;
 }
 
 .logoName {
-    font-size: 35px;
-    font-weight: 700;
-    color: rgb(111, 36, 180);
+  font-size: 35px;
+  font-weight: 700;
+  color: rgb(111, 36, 180);
 }
-
