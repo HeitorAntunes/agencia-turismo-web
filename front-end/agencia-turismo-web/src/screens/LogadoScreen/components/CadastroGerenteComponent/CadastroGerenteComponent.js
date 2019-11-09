@@ -6,16 +6,16 @@ import LogadoScreen from "../../LogadoScreen";
 
 const CadastroGerenteComponent = ({ setTitle }) => {
   const [values, setValues] = React.useState({
-    name: "",
-    lastname: "",
+    nome: "",
     email: "",
-    password: "",
     cpf: "",
-    phone: "",
-    address: "",
-    birth: "",
+    telefone: "",
+    endereco: "",
+    data_nascimento: "",
     cep: "",
-    cidade: ""
+    bairro: "",
+    cidade: "",
+    estado: ""
   });
 
   const [speed, setSpeed] = React.useState("");
@@ -36,21 +36,13 @@ const CadastroGerenteComponent = ({ setTitle }) => {
   return (
     <div>
       <div className={styles.CadastroGerenteComponent}>
-        <span className={styles.nameField}>Nome</span>
+        <span className={styles.nameField}>Nome Completo</span>
         <InputField
-          text={"Exemplo: Heitor"}
+          text={"Exemplo: Heitor de Lima Antunes"}
           type="text"
           handleChange={handleChange}
-          field={"name"}
-          value={values.name}
-        />
-        <span className={styles.nameField}>Sobrenome</span>
-        <InputField
-          text={"Antunes"}
-          type="text"
-          handleChange={handleChange}
-          field={"lastname"}
-          value={values.lastname}
+          field={"nome"}
+          value={values.nome}
         />
 
         <span className={styles.nameField}>Sexo</span>
@@ -73,14 +65,7 @@ const CadastroGerenteComponent = ({ setTitle }) => {
           field={"email"}
           value={values.email}
         />
-        <span className={styles.nameField}>Senha</span>
-        <InputField
-          text={"Senha"}
-          type="password"
-          handleChange={handleChange}
-          field={"password"}
-          value={values.senha}
-        />
+
         <span className={styles.nameField}>CPF</span>
         <InputField
           text={""}
@@ -94,24 +79,24 @@ const CadastroGerenteComponent = ({ setTitle }) => {
           text={"Exemplo: (99) 9999-9999"}
           type="text"
           handleChange={handleChange}
-          field={"phone"}
-          value={values.phone}
+          field={"telefone"}
+          value={values.telefone}
         />
         <span className={styles.nameField}>Endereço</span>
         <InputField
           text={""}
           type="text"
           handleChange={handleChange}
-          field={"address"}
-          value={values.address}
+          field={"endereco"}
+          value={values.endereco}
         />
         <span className={styles.nameField}>Data de Nascimento</span>
         <InputField
           text={"Colocar birthdate box"}
           type="text"
           handleChange={handleChange}
-          field={"birth"}
-          value={values.birth}
+          field={"data_nascimento"}
+          value={values.data_nascimento}
         />
         <span className={styles.nameField}>CEP</span>
         <InputField
@@ -121,6 +106,24 @@ const CadastroGerenteComponent = ({ setTitle }) => {
           field={"cep"}
           value={values.cep}
         />
+        <span className={styles.nameField}>Bairro</span>
+        <InputField
+          text={""}
+          type="text"
+          handleChange={handleChange}
+          field={"bairro"}
+          value={values.bairro}
+        />
+
+        <span className={styles.nameField}>Estado</span>
+        <InputField
+          text={""}
+          type="text"
+          handleChange={handleChange}
+          field={"estado"}
+          value={values.estado}
+        />
+
         <span className={styles.nameField}>Cidade</span>
         <InputField
           text={""}
