@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import styles from "./CadastroGerenteComponent.module.css";
 import InputField from "../../../../components/InputField/InputField";
 import LogadoScreen from "../../LogadoScreen";
+import Backend from "../../../../service/backend";
 
 const CadastroGerenteComponent = ({ setTitle }) => {
   const [values, setValues] = React.useState({
@@ -32,6 +33,10 @@ const CadastroGerenteComponent = ({ setTitle }) => {
   useEffect(() => {
     setTitle("CADASTRO GERENTE");
   }, []);
+
+  const onSubmit = () => {
+
+  }
 
   return (
     <div>
@@ -130,7 +135,7 @@ const CadastroGerenteComponent = ({ setTitle }) => {
           value={values.cidade}
         />
 
-        <button className={styles.button} /*onClick={changeScreen('logado')}*/>
+        <button className={styles.button} onClick={onSubmit}/*onClick={changeScreen('logado')}*/>
           SALVAR
         </button>
         <button
