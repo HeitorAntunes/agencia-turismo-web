@@ -8,7 +8,6 @@ const CadastroGerenteComponent = ({ setTitle }) => {
   const [values, setValues] = React.useState({
     name: "",
     lastname: "",
-    // gender: ""
     email: "",
     password: "",
     cpf: "",
@@ -19,13 +18,14 @@ const CadastroGerenteComponent = ({ setTitle }) => {
     cidade: ""
   });
 
+  const [speed, setSpeed] = React.useState("");
+
   const handleChange = prop => event => {
     console.log(values);
     setValues({ ...values, [prop]: event.target.value });
   };
 
-  const handleChange2 = prop => event => {
-    debugger;
+  const handleChange2 = () => event => {
     console.log(event.target.value);
   };
 
@@ -54,8 +54,12 @@ const CadastroGerenteComponent = ({ setTitle }) => {
         />
 
         <span className={styles.nameField}>Sexo</span>
-        <select onChange={handleChange2}>
-          <option default value=""></option>
+        <select
+          onChange={e => {
+            setValues({ ...values, sexo: e.target.value });
+          }}
+        >
+          <option defaultValue value=""></option>
           <option value="masculino">Masculino</option>
           <option value="feminino">Feminino</option>
         </select>
