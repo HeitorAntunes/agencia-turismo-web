@@ -1,18 +1,25 @@
-import React, {useEffect} from "react";
+import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 import styles from "./CadastroGerenteComponent.module.css";
 import InputField from "../../../../components/InputField/InputField";
 import LogadoScreen from "../../LogadoScreen";
 
-const CadastroGerenteComponent = ({setTitle}) => {
+const CadastroGerenteComponent = ({ setTitle }) => {
   const [values, setValues] = React.useState({
     nome: "",
-    senha: ""
+    senha: "",
+    sexo: ""
   });
+
+  const [speed, setSpeed] = React.useState("");
 
   const handleChange = prop => event => {
     console.log(values);
     setValues({ ...values, [prop]: event.target.value });
+  };
+
+  const handleChange2 = () => event => {
+    console.log(event.target.value);
   };
 
   useEffect(() => {
@@ -40,10 +47,14 @@ const CadastroGerenteComponent = ({setTitle}) => {
         />
 
         <span className={styles.nameField}>Sexo</span>
-        <select>
+        <select
+          onChange={e => {
+            setValues({ ...values, sexo: e.target.value });
+          }}
+        >
+          <option defaultValue value=""></option>
           <option value="masculino">Masculino</option>
           <option value="feminino">Feminino</option>
-          <option selected value=""></option>
         </select>
         <br></br>
 
