@@ -8,6 +8,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,6 +23,7 @@ import org.springframework.web.server.ResponseStatusException;
 import br.uniceub.pidi.model.GerenteModel;
 import br.uniceub.pidi.repository.GerenteRepository;
 
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/gerente")
 public class GerenteController {
@@ -48,7 +50,7 @@ public class GerenteController {
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
 	public GerenteModel create(@Valid @RequestBody GerenteModel gerente) {
-		Optional<GerenteModel> existingGerente = repository.findById(gerente.getId_gerente());
+		Optional<GerenteModel> existingGerente = repository.findByCpf(gerente.getCpf());
 
 		if (existingGerente.isPresent()) {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST,

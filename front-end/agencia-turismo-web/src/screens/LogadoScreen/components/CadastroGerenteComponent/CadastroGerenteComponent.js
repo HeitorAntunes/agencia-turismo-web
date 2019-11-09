@@ -35,8 +35,15 @@ const CadastroGerenteComponent = ({ setTitle }) => {
   }, []);
 
   const onSubmit = () => {
-
-  }
+    const valor = {
+      ...values,
+      id: 0,
+      user: {
+        id: 1
+      }
+    };
+    Backend(valor);
+  };
 
   return (
     <div>
@@ -57,8 +64,8 @@ const CadastroGerenteComponent = ({ setTitle }) => {
           }}
         >
           <option defaultValue value=""></option>
-          <option value="masculino">Masculino</option>
-          <option value="feminino">Feminino</option>
+          <option value="M">Masculino</option>
+          <option value="F">Feminino</option>
         </select>
         <br></br>
 
@@ -138,7 +145,10 @@ const CadastroGerenteComponent = ({ setTitle }) => {
           value={values.cidade}
         />
 
-        <button className={styles.button} onClick={onSubmit}/*onClick={changeScreen('logado')}*/>
+        <button
+          className={styles.button}
+          onClick={onSubmit} /*onClick={changeScreen('logado')}*/
+        >
           SALVAR
         </button>
         <button

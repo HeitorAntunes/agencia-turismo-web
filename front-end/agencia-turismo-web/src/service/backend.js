@@ -1,4 +1,4 @@
-import axios from "axios";
+const axios = require('axios');
 
 async function makePostRequest(params) {
 
@@ -8,7 +8,16 @@ async function makePostRequest(params) {
 }
 
 async function createGerente(params) {
+    debugger;
     let res = await axios.post('http://localhost:8080/gerente', params);
+    debugger;
+    return res;
+}
+
+async function getGerente() {
+    debugger;
+    let res = await axios.get('http://localhost:8080/gerente');
+    debugger;
     return res;
 }
 
