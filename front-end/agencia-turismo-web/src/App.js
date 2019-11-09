@@ -16,7 +16,7 @@ function App() {
           <Route exact path="/" component={LoginScreen} />
           <Route path="/logado" component={LogadoScreen}/>
           <Route path="/cadastro" component={CadastroScreen}/>
-          <Route path="/cadastroTestGerente" component={CadastroGerenteComponent}/>
+          <Route path="/cadastro-gerente" component={CadastroGerenteComponent}/>
         </Switch>
       </div>
     </Router>

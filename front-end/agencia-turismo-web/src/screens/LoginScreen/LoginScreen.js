@@ -33,8 +33,8 @@ const LoginScreen = ({history}) => {
         <InputField text={"E-mail"} type="text" icon={personIcon} handleChange={handleChange} field={"email"} value={values.email}/>
         <InputField text={"Senha"} type="password" icon={passwordIcon} handleChange={handleChange} field={"senha"} value={values.senha}/>
 
-        <button className={styles.button} onClick={changeScreen('logado')}>Entrar</button>
-        <button className={styles.button} onClick={changeScreen('cadastro')}>Cadastre-se</button>
+        {/* <button className={styles.button} onClick={changeScreen('logado')}>Entrar</button> */}
+        {/* <button className={styles.button} onClick={changeScreen('cadastro')}>Cadastre-se</button> */}
 
         <span className={styles.esqueceu}>Esqueceu sua senha?</span>
       </div>
