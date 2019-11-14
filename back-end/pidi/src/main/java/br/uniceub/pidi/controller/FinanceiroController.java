@@ -23,7 +23,7 @@ import br.uniceub.pidi.model.FinanceiroModel;
 import br.uniceub.pidi.repository.FinanceiroRepository;
 
 @RestController
-@RequestMapping("/financeiro")
+@RequestMapping("/cadastro-financeiro")
 public class FinanceiroController {
 	
 	@Autowired

@@ -24,7 +24,7 @@ import br.uniceub.pidi.repository.UserRepository;
 
 //@CrossOrigin("http://localhost:4200")
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/cadastro-user")
 public class UserController {
 
 	@Autowired

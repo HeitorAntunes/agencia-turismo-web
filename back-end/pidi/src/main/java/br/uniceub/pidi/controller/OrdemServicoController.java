@@ -23,7 +23,7 @@ import br.uniceub.pidi.model.OrdemServicoModel;
 import br.uniceub.pidi.repository.OrdemServicoRepository;
 
 @RestController
-@RequestMapping("/ordem_servico")
+@RequestMapping("/cadastro-ordem_servico")
 public class OrdemServicoController {
 
 	@Autowired

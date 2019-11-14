@@ -23,7 +23,7 @@ import br.uniceub.pidi.model.ClienteModel;
 import br.uniceub.pidi.repository.ClienteRepository;
 
 @RestController
-@RequestMapping("/cliente")
+@RequestMapping("/cadastro-cliente")
 public class ClienteController {
 
 	@Autowired

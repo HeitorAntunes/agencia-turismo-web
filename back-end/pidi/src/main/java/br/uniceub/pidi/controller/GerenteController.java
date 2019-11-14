@@ -25,7 +25,7 @@ import br.uniceub.pidi.repository.GerenteRepository;
 
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
-@RequestMapping("/gerente")
+@RequestMapping("/cadastro-gerente")
 public class GerenteController {
 
 	@Autowired
