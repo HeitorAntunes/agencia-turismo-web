@@ -1,9 +1,11 @@
 import React, { useEffect } from "react";
-import styles from "./CadastroGerenteComponent.module.css";
+import PropTypes from "prop-types";
+import styles from "./CadastroClienteComponent.module.css";
+
 import InputField from "../../../../components/InputField/InputField";
 import Backend from "../../../../service/backend";
 
-const CadastroGerenteComponent = ({ setTitle }) => {
+const CadastroClienteComponent = ({ setTitle }) => {
   const [values, setValues] = React.useState({
     nome: "",
     email: "",
@@ -29,7 +31,7 @@ const CadastroGerenteComponent = ({ setTitle }) => {
   };
 
   useEffect(() => {
-    setTitle("CADASTRO GERENTE");
+    setTitle("CADASTRO CLIENTE");
   }, []);
 
   const onSubmit = () => {
@@ -37,7 +39,7 @@ const CadastroGerenteComponent = ({ setTitle }) => {
       ...values,
       id: 0,
       user: {
-        id: 1
+        id: 7
       }
     };
     Backend(valor);
@@ -45,7 +47,7 @@ const CadastroGerenteComponent = ({ setTitle }) => {
 
   return (
     <div>
-      <div className={styles.CadastroGerenteComponent}>
+      <div className={styles.CadastroClienteComponent}>
         <span className={styles.nameField}>Nome Completo</span>
         <InputField
           text={"Exemplo: Heitor de Lima Antunes"}
@@ -159,8 +161,8 @@ const CadastroGerenteComponent = ({ setTitle }) => {
   );
 };
 
-CadastroGerenteComponent.propTypes = {};
+CadastroClienteComponent.propTypes = {};
 
-CadastroGerenteComponent.defaultProps = {};
+CadastroClienteComponent.defaultProps = {};
 
-export default CadastroGerenteComponent;
+export default CadastroClienteComponent;

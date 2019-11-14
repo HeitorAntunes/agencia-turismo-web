@@ -5,7 +5,6 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import LoginScreen from "./screens/LoginScreen/LoginScreen";
 import LogadoScreen from "./screens/LogadoScreen/LogadoScreen";
 import CadastroScreen from "./screens/CadastroScreen/CadastroScreen";
-import CadastroGerenteComponent from "./screens/LogadoScreen/components/CadastroGerenteComponent/CadastroGerenteComponent";
 
 function App() {
   return (

@@ -12,16 +12,20 @@ const HeaderComponent = () => (
         <span className={styles.sisat}> SISAT </span>
       </div>
 
-      <div className={styles.nome}> <img className={user} src={user}></img> <span>Heitor</span></div>
+      <div className={styles.nome}>
+        {" "}
+        <img className={user} src={user}></img> <span>Heitor</span>
+      </div>
     </div>
     <div>
       <div className={styles.menu}>
         <div className={styles.buttons}> INÍCIO</div>
         <div className={styles.buttons}> CLIENTES</div>
-        <div className={styles.buttons}> ORDEM DE SERVIÇO </div>
-        <div className={styles.buttons}> FORNECEDORES </div>
-        <div className={styles.buttons}> FINANCEIRO </div>
         <div className={styles.buttons}> FUNCIONÁRIOS </div>
+        <div className={styles.buttons}> FORNECEDORES </div>
+        <div className={styles.buttons}> ORDEM DE SERVIÇO </div>
+
+        <div className={styles.buttons}> FINANCEIRO </div>
       </div>
     </div>
   </div>

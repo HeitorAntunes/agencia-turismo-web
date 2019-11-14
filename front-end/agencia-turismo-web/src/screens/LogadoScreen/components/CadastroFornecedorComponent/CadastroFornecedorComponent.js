@@ -1,16 +1,16 @@
-import React, { useEffect } from "react";
-import styles from "./CadastroGerenteComponent.module.css";
+import React, {useEffect} from 'react';
+import PropTypes from 'prop-types';
+import styles from './CadastroFornecedorComponent.module.css';
 import InputField from "../../../../components/InputField/InputField";
 import Backend from "../../../../service/backend";
 
-const CadastroGerenteComponent = ({ setTitle }) => {
+const CadastroFornecedorComponent = ({ setTitle }) => {
   const [values, setValues] = React.useState({
     nome: "",
     email: "",
-    cpf: "",
+    cnpj: "",
     telefone: "",
     endereco: "",
-    data_nascimento: "",
     cep: "",
     bairro: "",
     cidade: "",
@@ -29,23 +29,20 @@ const CadastroGerenteComponent = ({ setTitle }) => {
   };
 
   useEffect(() => {
-    setTitle("CADASTRO GERENTE");
+    setTitle("CADASTRO FORNECEDOR");
   }, []);
 
   const onSubmit = () => {
     const valor = {
       ...values,
       id: 0,
-      user: {
-        id: 1
-      }
     };
     Backend(valor);
   };
 
   return (
     <div>
-      <div className={styles.CadastroGerenteComponent}>
+      <div className={styles.CadastroFornecedorComponent}>
         <span className={styles.nameField}>Nome Completo</span>
         <InputField
           text={"Exemplo: Heitor de Lima Antunes"}
@@ -54,18 +51,6 @@ const CadastroGerenteComponent = ({ setTitle }) => {
           field={"nome"}
           value={values.nome}
         />
-
-        <span className={styles.nameField}>Sexo</span>
-        <select
-          onChange={e => {
-            setValues({ ...values, sexo: e.target.value });
-          }}
-        >
-          <option defaultValue value=""></option>
-          <option value="M">Masculino</option>
-          <option value="F">Feminino</option>
-        </select>
-        <br></br>
 
         <span className={styles.nameField}>E-mail</span>
         <InputField
@@ -76,13 +61,13 @@ const CadastroGerenteComponent = ({ setTitle }) => {
           value={values.email}
         />
 
-        <span className={styles.nameField}>CPF</span>
+        <span className={styles.nameField}>CNPJ</span>
         <InputField
           text={""}
           type="text"
           handleChange={handleChange}
-          field={"cpf"}
-          value={values.cpf}
+          field={"cnpj"}
+          value={values.cnpj}
         />
         <span className={styles.nameField}>Telefone</span>
         <InputField
@@ -100,14 +85,7 @@ const CadastroGerenteComponent = ({ setTitle }) => {
           field={"endereco"}
           value={values.endereco}
         />
-        <span className={styles.nameField}>Data de Nascimento</span>
-        <InputField
-          text={"Colocar birthdate box"}
-          type="text"
-          handleChange={handleChange}
-          field={"data_nascimento"}
-          value={values.data_nascimento}
-        />
+       
         <span className={styles.nameField}>CEP</span>
         <InputField
           text={""}
@@ -159,8 +137,8 @@ const CadastroGerenteComponent = ({ setTitle }) => {
   );
 };
 
-CadastroGerenteComponent.propTypes = {};
+CadastroFornecedorComponent.propTypes = {};
 
-CadastroGerenteComponent.defaultProps = {};
+CadastroFornecedorComponent.defaultProps = {};
 
-export default CadastroGerenteComponent;
+export default CadastroFornecedorComponent;

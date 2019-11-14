@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 import styles from "./LoginScreen.module.css";
 import InputField from "../../components/InputField/InputField";
 import personIcon from "../../assets/person-24px.svg";
