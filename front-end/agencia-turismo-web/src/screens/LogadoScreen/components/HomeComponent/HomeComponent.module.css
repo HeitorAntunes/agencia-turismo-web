@@ -1,0 +1,16 @@
+.HomeComponent {
+    height: 100%;
+    padding: 20px;
+}
+      
+.nameField {
+    padding: 5px;
+}
+
+.message {
+    height: 100%;
+    font-weight: 700px;
+    font-size: 50px;
+    text-align: center;
+}
+    

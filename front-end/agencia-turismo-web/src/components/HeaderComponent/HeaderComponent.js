@@ -16,7 +16,7 @@ const HeaderComponent = ({ history }) => {
       <div className={styles.cabecalho}>
         <div className={styles.icon}>
           <img className={styles.airplane} src={airplane} alt=""></img>
-          <span className={styles.sisat}> SISAT </span>
+          <span className={styles.sisat} onClick={() => onChangePage2("/logado")}> SISAT </span>
         </div>
 
         <div className={styles.nome}>
@@ -26,7 +26,7 @@ const HeaderComponent = ({ history }) => {
       </div>
       <div>
         <div className={styles.menu}>
-          <div className={styles.buttons}> INÍCIO</div>
+          <div className={styles.buttons} onClick={() => onChangePage2("/logado")}> INÍCIO</div>
           <div className={styles.buttons} onClick={() => onChangePage2("/logado/cadastro-cliente")}> CLIENTES</div>
           <div className={styles.buttons} onClick={() => onChangePage2("/logado/cadastro-atendente")}> FUNCIONÁRIOS </div>
           <div className={styles.buttons} onClick={() => onChangePage2("/logado/cadastro-fornecedor")}> FORNECEDORES </div>
