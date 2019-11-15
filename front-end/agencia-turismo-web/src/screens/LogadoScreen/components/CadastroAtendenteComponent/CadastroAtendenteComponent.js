@@ -4,6 +4,9 @@ import InputField from "../../../../components/InputField/InputField";
 import Backend from "../../../../service/backend";
 
 const CadastroAtendenteComponent = ({ setTitle }) => {
+
+  const request = new Backend();
+
   const [values, setValues] = React.useState({
     nome: "",
     email: "",
@@ -35,12 +38,13 @@ const CadastroAtendenteComponent = ({ setTitle }) => {
   const onSubmit = () => {
     const valor = {
       ...values,
-      id: 0,
-      user: {
-        id: 7
+      "id_atendente": 0,
+      "id": {
+        id: 1
       }
     };
-    Backend(valor);
+    request.createAtendente(valor)
+    
   };
 
   return (

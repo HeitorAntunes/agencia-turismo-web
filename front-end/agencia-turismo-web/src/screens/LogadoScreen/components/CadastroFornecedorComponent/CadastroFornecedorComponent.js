@@ -5,6 +5,7 @@ import InputField from "../../../../components/InputField/InputField";
 import Backend from "../../../../service/backend";
 
 const CadastroFornecedorComponent = ({ setTitle }) => {
+  const request = new Backend();
   const [values, setValues] = React.useState({
     nome: "",
     email: "",
@@ -35,9 +36,9 @@ const CadastroFornecedorComponent = ({ setTitle }) => {
   const onSubmit = () => {
     const valor = {
       ...values,
-      id: 0,
+      "id_fornecedor": 0,
     };
-    Backend(valor);
+    request.createFornecedor(valor)
   };
 
   return (
