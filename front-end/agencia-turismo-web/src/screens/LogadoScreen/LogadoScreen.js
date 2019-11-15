@@ -8,6 +8,7 @@ import CadastroGerenteComponent from "./components/CadastroGerenteComponent/Cada
 import CadastroAtendenteComponent from "./components/CadastroAtendenteComponent/CadastroAtendenteComponent";
 import CadastroFornecedorComponent from "./components/CadastroFornecedorComponent/CadastroFornecedorComponent";
 import CadastroClienteComponent from "./components/CadastroClienteComponent/CadastroClienteComponent";
+import HomeComponent from "./components/HomeComponent/HomeComponent";
 
 const LogadoScreen = () => {
   let match = useRouteMatch();
@@ -22,6 +23,9 @@ const LogadoScreen = () => {
           <div className={styles.title}> {title} </div>
           <div className={styles.secondBackground}>
             <Switch>
+            <Route exact path={`${match.path}`}>
+                <HomeComponent setTitle={setTitle} />
+              </Route>
               <Route path={`${match.path}/cadastro-gerente`}>
                 <CadastroGerenteComponent setTitle={setTitle} />
               </Route>
@@ -35,6 +39,8 @@ const LogadoScreen = () => {
                 <CadastroClienteComponent setTitle={setTitle} />
               </Route>
             </Switch>
+            </div>
+            <div className={styles.title}>
           </div>
         </div>
       </div>
