@@ -1,66 +1,85 @@
-const axios = require('axios');
+import axios from "axios";
 
-async function makePostRequest(params) {
+class Backend {
+  requester = axios.create({
+    baseURL: "http://localhost:8080",
+    timeout: 30000,
+    headers: {
+      "Content-Type": "application/json"
+    }
+  });
 
-    let res = await axios.post('http://localhost:8080/users/', params);
+  createAtendente(params) {
+    return this.requester
+      .post("/cadastro-atendente", params)
+      .then(res => {
+        alert("Atendente cadastrado com sucesso!!");
+      })
+      .catch(err => {
+        alert("Erro ao cadastrar, tente novamente!");
+      });
+  }
 
-    console.log(res.data);
-}
+  createGerente(params) {
+    return this.requester
+      .post("/cadastro-gerente", params)
+      .then(res => {
+        alert("Gerente cadastrado com sucesso!!");
+      })
+      .catch(err => {
+        alert("Erro ao cadastrar, tente novamente!");
+      });
+  }
 
-async function createGerente(params) {
+  async getGerente() {
     debugger;
-    let res = await axios.post('http://localhost:8080/cadastro-gerente', params);
+    let res = await axios.get("http://localhost:8080/cadastro-gerente");
     debugger;
     return res;
-}
+  }
 
-async function getGerente() {
+  async getAtendente() {
     debugger;
-    let res = await axios.get('http://localhost:8080/cadastro-gerente');
+    let res = await axios.get("http://localhost:8080/cadastro-atendente");
     debugger;
     return res;
-}
+  }
 
-async function createAtendente(params) {
+  createFornecedor(params) {
+    return this.requester
+      .post("/cadastro-fornecedor", params)
+      .then(res => {
+        alert("Fornecedor cadastrado com sucesso!!");
+      })
+      .catch(err => {
+        alert("Erro ao cadastrar, tente novamente!");
+      });
+  }
+
+  async getFornecedor() {
     debugger;
-    let res = await axios.post('http://localhost:8080/cadastro-atendente', params);
+    let res = await axios.get("http://localhost:8080/cadastro-fornecedor");
     debugger;
     return res;
-}
+  }
 
-async function getAtendente() {
+  createCliente(params) {
+    return this.requester
+      .post("/cadastro-cliente", params)
+      .then(res => {
+        alert("Cliente cadastrado com sucesso!!");
+      })
+      .catch(err => {
+        alert("Erro ao cadastrar, tente novamente!");
+      });
+  }
+
+  async getCliente() {
     debugger;
-    let res = await axios.get('http://localhost:8080/cadastro-atendente');
+    let res = await axios.get("http://localhost:8080/cadastro-cliente");
     debugger;
     return res;
+  }
 }
 
-async function createFornecedor(params) {
-    debugger;
-    let res = await axios.post('http://localhost:8080/cadastro-fornecedor', params);
-    debugger;
-    return res;
-}
-
-async function getFornecedor() {
-    debugger;
-    let res = await axios.get('http://localhost:8080/cadastro-fornecedor');
-    debugger;
-    return res;
-}
-
-async function createCliente(params) {
-    debugger;
-    let res = await axios.post('http://localhost:8080/cadastro-cliente', params);
-    debugger;
-    return res;
-}
-
-async function getCliente() {
-    debugger;
-    let res = await axios.get('http://localhost:8080/cadastro-cliente');
-    debugger;
-    return res;
-}
-
-export default createGerente;
+export default Backend;
