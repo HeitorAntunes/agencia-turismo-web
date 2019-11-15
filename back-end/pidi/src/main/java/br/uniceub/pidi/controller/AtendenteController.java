@@ -6,6 +6,8 @@ import java.util.Optional;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -16,12 +18,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
 import br.uniceub.pidi.model.AtendenteModel;
 import br.uniceub.pidi.repository.AtendenteRepository;
+import br.uniceub.pidi.service.AtendenteService;
 
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
@@ -30,10 +34,16 @@ public class AtendenteController {
 
 	@Autowired
 	private AtendenteRepository repository;
+	
+	@Autowired
+	private AtendenteService service;
 
 	@GetMapping
-	private List<AtendenteModel> list() {
-		return repository.findAll();
+	private Page<AtendenteModel> list(
+			@RequestParam(defaultValue = "0") Integer pageNo,
+            @RequestParam(defaultValue = "5") Integer pageSize,
+            @RequestParam(defaultValue = "id") String sortBy) {
+		return service.getAllAtendentes(pageNo, pageSize, sortBy);
 	}
 
 	@GetMapping("/{id_atendente}")
@@ -45,6 +55,17 @@ public class AtendenteController {
 		}
 
 		return ResponseEntity.ok(atendente.get());
+	}
+	
+	@GetMapping("/filter-atendente")
+	public ResponseEntity<Page<AtendenteModel>> filterSells(
+			@RequestParam(defaultValue = "0") Integer pageNo,
+            @RequestParam(defaultValue = "5") Integer pageSize,
+            @RequestParam(defaultValue = "id") String sortBy,
+            @RequestParam(defaultValue = "") String value) {
+		Page<AtendenteModel> list = service.getAllAtendentesFiltered(pageNo, pageSize, sortBy, value);
+		 
+        return new ResponseEntity<Page<AtendenteModel>>(list, new HttpHeaders(), HttpStatus.OK);
 	}
 
 	@PostMapping

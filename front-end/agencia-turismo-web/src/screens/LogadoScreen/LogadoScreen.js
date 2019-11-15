@@ -36,6 +36,7 @@ const LogadoScreen = () => {
               </Route>
             </Switch>
           </div>
+          <div className={styles.title}></div>
         </div>
       </div>
     </div>

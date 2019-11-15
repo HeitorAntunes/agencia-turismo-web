@@ -35,6 +35,7 @@
     top: 0;
     right:0;
     cursor: pointer;
+    display: flex;
 }
 
 .menu {
@@ -46,4 +47,9 @@
 .buttons {
     font-weight: 700;
     cursor: pointer;
+}
+
+.span {
+    display: flex;
+    align-items: center;
 }

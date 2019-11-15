@@ -21,7 +21,7 @@ const HeaderComponent = ({ history }) => {
 
         <div className={styles.nome}>
           {" "}
-          <img className={user} src={user} alt=""></img> <span>Heitor</span>
+          <img className={user} src={user} alt=""></img> <span className={styles.span}>Heitor</span>
         </div>
       </div>
       <div>
