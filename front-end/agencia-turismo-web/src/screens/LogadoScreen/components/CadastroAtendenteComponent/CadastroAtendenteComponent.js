@@ -35,6 +35,10 @@ const CadastroAtendenteComponent = ({ setTitle, data }) => {
     setTitle("CADASTRO ATENDENTE");
   }, []);
 
+  useEffect(() => {
+    setValues(data)
+  }, []);
+
   const onSubmit = () => {
     const valor = {
       ...values,
