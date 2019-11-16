@@ -12,12 +12,16 @@ const FornecedorListComponent = () => {
 
   const header = ["idFornecedor", "nome", "cpf", "ações"];
 
-  useEffect(() => {
+  const getAllFornecedores = () => {
     request.getFornecedor().then(res => {
       setState(res.data);
       setHttpStatus(res.status);
       setLoading(false);
     });
+  }
+
+  useEffect(() => {
+    getAllFornecedores();
   }, []);
 
   const search = value => {
@@ -26,6 +30,15 @@ const FornecedorListComponent = () => {
       setState(res.data);
       setHttpStatus(res.status);
       setLoading(false);    
+    });
+  };
+
+  const deleteElement = value => {
+    console.log(value)
+    setLoading(true);
+    request.delete("cadastro-fornecedor/" + value[header[0]]).then(res => {
+      setLoading(false);
+      getAllFornecedores();
     });
   };
 
@@ -39,6 +52,7 @@ const FornecedorListComponent = () => {
             header={header}
             search={search}
             cadastroScreen={"cadastro-fornecedor"}
+            deleteElement={deleteElement}
           />
         ) : (
           <span>Erro</span>
