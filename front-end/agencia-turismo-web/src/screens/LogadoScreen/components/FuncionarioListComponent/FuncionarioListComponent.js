@@ -12,12 +12,16 @@ const FuncionarioListComponent = () => {
 
   const header = ["idAtendente", "nome", "cpf", "ações"];
 
-  useEffect(() => {
+  const getAllAtendentes = () => {
     request.getAtendente().then(res => {
       setState(res.data);
       setHttpStatus(res.status);
       setLoading(false);
     });
+  }
+
+  useEffect(() => {
+    getAllAtendentes();
   }, []);
 
   const search = value => {
@@ -26,6 +30,15 @@ const FuncionarioListComponent = () => {
       setState(res.data);
       setHttpStatus(res.status);
       setLoading(false);    
+    });
+  };
+
+  const deleteElement = value => {
+    console.log(value)
+    setLoading(true);
+    request.delete("cadastro-atendente/" + value[header[0]]).then(res => {
+      setLoading(false);
+      getAllAtendentes();
     });
   };
 
@@ -39,6 +52,7 @@ const FuncionarioListComponent = () => {
             header={header}
             search={search}
             cadastroScreen={"cadastro-atendente"}
+            deleteElement={deleteElement}
           />
         ) : (
           <span>Erro</span>

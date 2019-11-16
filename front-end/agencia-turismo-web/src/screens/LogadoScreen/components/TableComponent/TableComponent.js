@@ -11,7 +11,8 @@ const TableComponent = ({
   setState,
   header,
   search,
-  cadastroScreen
+  cadastroScreen,
+  deleteElement
 }) => {
   return (
     <div className={styles.TableComponent}>
@@ -33,6 +34,7 @@ const TableComponent = ({
             state={state.content}
             header={header}
             cadastroScreen={cadastroScreen}
+            deleteElement={deleteElement}
           ></ContentComponent>
         </div>
       )}
