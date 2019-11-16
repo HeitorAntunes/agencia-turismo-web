@@ -86,18 +86,18 @@ class Backend {
   deleteCliente(param) {
     return this.requester.delete("/cadastro-cliente/" + param);
   }
+  get(param) {
+    return this.requester.get(param);
+  }
+
+  pesquisa(param) {
+    return this.requester.get(param);
+  }
+
+  delete(param) {
+    return this.requester.delete(param);
+  }
 }
-  // get(param) {
-  //   return this.requester.get(param);
-  // }
-
-  // pesquisa(param) {
-  //   return this.requester.get(param);
-  // }
-
-  // delete(param) {
-  //   return this.requester.delete(param);
-  // }
 
   
 

@@ -5,7 +5,7 @@ import DeleteIcon from "../../../../assets/delete-24px.svg";
 import EditIcon from "../../../../assets/edit-24px.svg";
 import { withRouter } from "react-router";
 
-const LineComponent = ({ items, header, history, cadastroScreen }) => {
+const LineComponent = ({ items, header, history, cadastroScreen, deleteElement }) => {
   const listItems = () => {
     return header.map(item => {
       if (item.toLocaleUpperCase() !== "AÇÕES") {
@@ -39,7 +39,7 @@ const LineComponent = ({ items, header, history, cadastroScreen }) => {
           alt=""
           onClick={() => changePage(cadastroScreen)}
         />
-        <img className={styles.icon} src={DeleteIcon} alt="" />
+        <img className={styles.icon} src={DeleteIcon} alt="" onClick={() => deleteElement(items)}/>
       </div>
     </div>
   );
