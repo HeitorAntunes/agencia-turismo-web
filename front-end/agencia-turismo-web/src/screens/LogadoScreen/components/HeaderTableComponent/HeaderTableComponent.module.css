@@ -1,0 +1,9 @@
+.HeaderTableComponent {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2px 10px;
+    border-top: 1px solid gray;
+    border-bottom: 1px solid gray;
+    color: rgb(75, 75, 75);
+}

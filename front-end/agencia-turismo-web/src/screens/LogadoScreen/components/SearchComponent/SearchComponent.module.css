@@ -1,0 +1,21 @@
+.SearchComponent {}
+
+.search {
+    padding-left: 5px;
+}
+
+.searchField {
+    display: flex;
+    align-items: center;
+    margin: 10px 0;
+}
+
+.inputField {
+    width: 50%;
+    margin-right: 15px;
+}
+
+.icon {
+    padding: 0px 5px;
+    cursor: pointer;
+}

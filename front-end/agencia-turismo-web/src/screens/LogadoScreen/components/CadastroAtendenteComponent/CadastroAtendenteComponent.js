@@ -3,7 +3,7 @@ import styles from "./CadastroAtendenteComponent.module.css";
 import InputField from "../../../../components/InputField/InputField";
 import Backend from "../../../../service/backend";
 
-const CadastroAtendenteComponent = ({ setTitle }) => {
+const CadastroAtendenteComponent = ({ setTitle, data }) => {
 
   const request = new Backend();
 

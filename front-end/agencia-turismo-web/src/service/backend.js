@@ -32,17 +32,16 @@ class Backend {
   }
 
   async getGerente() {
-    debugger;
     let res = await axios.get("http://localhost:8080/cadastro-gerente");
-    debugger;
     return res;
   }
 
-  async getAtendente() {
-    debugger;
-    let res = await axios.get("http://localhost:8080/cadastro-atendente");
-    debugger;
-    return res;
+  getAtendente() {
+    return this.requester.get("/cadastro-atendente");
+  }
+
+  pesquisaAtendente(param) {
+    return this.requester.get("/cadastro-atendente/filter-atendente?value=" + param);
   }
 
   createFornecedor(params) {
@@ -57,9 +56,7 @@ class Backend {
   }
 
   async getFornecedor() {
-    debugger;
     let res = await axios.get("http://localhost:8080/cadastro-fornecedor");
-    debugger;
     return res;
   }
 
@@ -75,9 +72,7 @@ class Backend {
   }
 
   async getCliente() {
-    debugger;
     let res = await axios.get("http://localhost:8080/cadastro-cliente");
-    debugger;
     return res;
   }
 }
