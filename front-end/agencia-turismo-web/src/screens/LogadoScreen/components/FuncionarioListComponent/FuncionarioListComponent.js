@@ -8,18 +8,12 @@ const FuncionarioListComponent = () => {
   const [state, setState] = React.useState({});
   const [httpStatus, setHttpStatus] = React.useState();
   const [loading, setLoading] = React.useState(true);
-  const [empty, setEmpty] = React.useState(false);
   const request = new Backend();
 
   const header = ["idAtendente", "nome", "cpf", "ações"];
 
   useEffect(() => {
     request.getAtendente().then(res => {
-      if (res.data === "") {
-        setEmpty(true);
-      } else {
-        setEmpty(false);
-      }
       setState(res.data);
       setHttpStatus(res.status);
       setLoading(false);
@@ -29,11 +23,6 @@ const FuncionarioListComponent = () => {
   const search = value => {
     setLoading(true);
     request.pesquisaAtendente(value).then(res => {
-      if (res.data === "") {
-        setEmpty(true);
-      } else {
-        setEmpty(false);
-      }
       setState(res.data);
       setHttpStatus(res.status);
       setLoading(false);    
@@ -50,13 +39,12 @@ const FuncionarioListComponent = () => {
             header={header}
             search={search}
             cadastroScreen={"cadastro-atendente"}
-            isEmpty={empty}
           />
         ) : (
-          <span>Erro</span>
+          <span>Deu ruim</span>
         )
       ) : (
-        <span>Carregando...</span>
+        <span>carregando</span>
       )}
     </div>
   );
