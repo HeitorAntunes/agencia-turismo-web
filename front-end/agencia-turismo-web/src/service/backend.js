@@ -12,12 +12,6 @@ class Backend {
   createAtendente(params) {
     return this.requester
       .post("/cadastro-atendente", params)
-      .then(res => {
-        alert("Atendente cadastrado com sucesso!!");
-      })
-      .catch(err => {
-        alert("Erro ao cadastrar, tente novamente!");
-      });
   }
 
   getAtendente() {
@@ -36,7 +30,7 @@ class Backend {
     return this.requester
       .post("/cadastro-gerente", params)
       .then(res => {
-        alert("Gerente cadastrado com sucesso!!");
+        alert("Atendente cadastrado com sucesso!!");
       })
       .catch(err => {
         alert("Erro ao cadastrar, tente novamente!");
