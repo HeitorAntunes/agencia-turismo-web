@@ -12,12 +12,6 @@ class Backend {
   createAtendente(params) {
     return this.requester
       .post("/cadastro-atendente", params)
-      .then(res => {
-        alert("Atendente cadastrado com sucesso!!");
-      })
-      .catch(err => {
-        alert("Erro ao cadastrar, tente novamente!");
-      });
   }
 
   getAtendente() {
@@ -35,12 +29,7 @@ class Backend {
   createGerente(params) {
     return this.requester
       .post("/cadastro-gerente", params)
-      .then(res => {
-        alert("Gerente cadastrado com sucesso!!");
-      })
-      .catch(err => {
-        alert("Erro ao cadastrar, tente novamente!");
-      });
+      
   }
 
   async getGerente() {
@@ -51,12 +40,6 @@ class Backend {
   createFornecedor(params) {
     return this.requester
       .post("/cadastro-fornecedor", params)
-      .then(res => {
-        alert("Fornecedor cadastrado com sucesso!!");
-      })
-      .catch(err => {
-        alert("Erro ao cadastrar, tente novamente!");
-      });
   }
 
   getFornecedor() {
@@ -74,12 +57,6 @@ class Backend {
   createCliente(params) {
     return this.requester
       .post("/cadastro-cliente", params)
-      .then(res => {
-        alert("Cliente cadastrado com sucesso!!");
-      })
-      .catch(err => {
-        alert("Erro ao cadastrar, tente novamente!");
-      });
   }
 
   getCliente() {

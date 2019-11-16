@@ -2,8 +2,9 @@ import React, { useEffect } from "react";
 import styles from "./CadastroAtendenteComponent.module.css";
 import InputField from "../../../../components/InputField/InputField";
 import Backend from "../../../../service/backend";
+import { withRouter} from "react-router";
 
-const CadastroAtendenteComponent = ({ setTitle, data }) => {
+const CadastroAtendenteComponent = ({ setTitle, data, history }) => {
 
   const request = new Backend();
 
@@ -22,13 +23,11 @@ const CadastroAtendenteComponent = ({ setTitle, data }) => {
 
   const [speed, setSpeed] = React.useState("");
 
+  
+
   const handleChange = prop => event => {
     console.log(values);
     setValues({ ...values, [prop]: event.target.value });
-  };
-
-  const handleChange2 = () => event => {
-    console.log(event.target.value);
   };
 
   useEffect(() => {
@@ -48,7 +47,13 @@ const CadastroAtendenteComponent = ({ setTitle, data }) => {
       }
     };
     request.createAtendente(valor)
-    
+    .then(res => {
+      alert("Atendente cadastrado com sucesso!!");
+      history.push("/logado/atendente");
+    })
+    .catch(err => {
+      alert("Erro ao cadastrar, tente novamente!");
+    });
   };
 
   return (
@@ -171,4 +176,4 @@ CadastroAtendenteComponent.propTypes = {};
 
 CadastroAtendenteComponent.defaultProps = {};
 
-export default CadastroAtendenteComponent;
+export default withRouter (CadastroAtendenteComponent);

@@ -2,8 +2,12 @@ import React, { useEffect } from "react";
 import styles from "./CadastroGerenteComponent.module.css";
 import InputField from "../../../../components/InputField/InputField";
 import Backend from "../../../../service/backend";
+import { withRouter} from "react-router";
 
-const CadastroGerenteComponent = ({ setTitle }) => {
+const CadastroGerenteComponent = ({ setTitle, data, history }) => {
+
+  const request = new Backend();
+
   const [values, setValues] = React.useState({
     nome: "",
     email: "",
@@ -19,13 +23,11 @@ const CadastroGerenteComponent = ({ setTitle }) => {
 
   const [speed, setSpeed] = React.useState("");
 
+  
+
   const handleChange = prop => event => {
     console.log(values);
     setValues({ ...values, [prop]: event.target.value });
-  };
-
-  const handleChange2 = () => event => {
-    console.log(event.target.value);
   };
 
   useEffect(() => {
@@ -35,12 +37,19 @@ const CadastroGerenteComponent = ({ setTitle }) => {
   const onSubmit = () => {
     const valor = {
       ...values,
-      id: 0,
-      user: {
+      "id_gerente": 0,
+      "id": {
         id: 1
       }
     };
-    Backend(valor);
+    request.createGerente(valor)
+    .then(res => {
+      alert("Gerente cadastrado com sucesso!!");
+      history.push("/logado/gerente");
+    })
+    .catch(err => {
+      alert("Erro ao cadastrar, tente novamente!");
+    });
   };
 
   return (
@@ -163,4 +172,4 @@ CadastroGerenteComponent.propTypes = {};
 
 CadastroGerenteComponent.defaultProps = {};
 
-export default CadastroGerenteComponent;
+export default withRouter (CadastroGerenteComponent);
