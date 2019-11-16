@@ -41,7 +41,7 @@ public class FinanceiroController {
 	@GetMapping
 	private Page<FinanceiroModel> list(
 			@RequestParam(defaultValue = "0") Integer pageNo,
-            @RequestParam(defaultValue = "5") Integer pageSize,
+            @RequestParam(defaultValue = "10000") Integer pageSize,
             @RequestParam(defaultValue = "idFinanceiro") String sortBy) {
 		return service.getAllFinanceiros(pageNo, pageSize, sortBy);
 	}
@@ -49,7 +49,7 @@ public class FinanceiroController {
 	@GetMapping("/filter-fornecedor")
 	public ResponseEntity<Page<FinanceiroModel>> filterSells(
 			@RequestParam(defaultValue = "0") Integer pageNo,
-            @RequestParam(defaultValue = "5") Integer pageSize,
+            @RequestParam(defaultValue = "10000") Integer pageSize,
             @RequestParam(defaultValue = "idFinanceiro") String sortBy,
             @RequestParam(defaultValue = "") String value) {
 		Page<FinanceiroModel> list = service.getAllFinanceirosFiltered(pageNo, pageSize, sortBy, value);

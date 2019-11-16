@@ -37,7 +37,7 @@ public class OrdemServicoController {
 
 	@GetMapping
 	private Page<OrdemServicoModel> list(@RequestParam(defaultValue = "0") Integer pageNo,
-			@RequestParam(defaultValue = "5") Integer pageSize,
+			@RequestParam(defaultValue = "10000") Integer pageSize,
 			@RequestParam(defaultValue = "idOrdemServico") String sortBy) {
 		return service.getAllOrdemServicos(pageNo, pageSize, sortBy);
 	}
@@ -56,7 +56,7 @@ public class OrdemServicoController {
 	@GetMapping("/filter-ordemServico")
 	public ResponseEntity<Page<OrdemServicoModel>> filterOrdemServicos(
 			@RequestParam(defaultValue = "0") Integer pageNo,
-            @RequestParam(defaultValue = "5") Integer pageSize,
+            @RequestParam(defaultValue = "10000") Integer pageSize,
             @RequestParam(defaultValue = "id_ordemServico") String sortBy,
             @RequestParam(defaultValue = "") String value) {
 		Page<OrdemServicoModel> list = service.getAllOrdemServicosFiltered(pageNo, pageSize, sortBy, value);

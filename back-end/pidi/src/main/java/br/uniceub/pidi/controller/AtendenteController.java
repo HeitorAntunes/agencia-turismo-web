@@ -40,7 +40,7 @@ public class AtendenteController {
 	@GetMapping
 	private Page<AtendenteModel> list(
 			@RequestParam(defaultValue = "0") Integer pageNo,
-            @RequestParam(defaultValue = "5") Integer pageSize,
+            @RequestParam(defaultValue = "10000") Integer pageSize,
             @RequestParam(defaultValue = "idAtendente") String sortBy) {
 		return service.getAllAtendentes(pageNo, pageSize, sortBy);
 	}
@@ -59,7 +59,7 @@ public class AtendenteController {
 	@GetMapping("/filter-atendente")
 	public ResponseEntity<Page<AtendenteModel>> filterAtendentes(
 			@RequestParam(defaultValue = "0") Integer pageNo,
-            @RequestParam(defaultValue = "5") Integer pageSize,
+            @RequestParam(defaultValue = "10000") Integer pageSize,
             @RequestParam(defaultValue = "idAtendente") String sortBy,
             @RequestParam(defaultValue = "") String value) {
 		Page<AtendenteModel> list = service.getAllAtendentesFiltered(pageNo, pageSize, sortBy, value);
