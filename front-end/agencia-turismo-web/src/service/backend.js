@@ -59,9 +59,16 @@ class Backend {
       });
   }
 
-  async getFornecedor() {
-    let res = await axios.get("http://localhost:8080/cadastro-fornecedor");
-    return res;
+  getFornecedor() {
+    return this.requester.get("/cadastro-fornecedor");
+  }
+
+  pesquisaFornecedor (param) {
+    return this.requester.get("/cadastro-fornecedor/filter-fornecedor?value=" + param);
+  }
+
+  deleteFornecedor (param) {
+    return this.requester.delete("/cadastro-fornecedor/" + param);
   }
 
   createCliente(params) {

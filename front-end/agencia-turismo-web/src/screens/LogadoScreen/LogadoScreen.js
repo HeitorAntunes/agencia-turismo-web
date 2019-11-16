@@ -11,7 +11,7 @@ import CadastroClienteComponent from "./components/CadastroClienteComponent/Cada
 import HomeComponent from "./components/HomeComponent/HomeComponent";
 import FuncionarioListComponent from "./components/FuncionarioListComponent/FuncionarioListComponent";
 import ClienteListComponent from "./components/ClienteListComponent/ClienteListComponent";
-
+import FornecedorListComponent from "./components/FornecedorListComponent/FornecedorListComponent";
 
 const LogadoScreen = () => {
   let match = useRouteMatch();
@@ -46,6 +46,9 @@ const LogadoScreen = () => {
               </Route>
               <Route path={`${match.path}/cliente`}>
                 <ClienteListComponent setTitle={setTitle} />
+              </Route>
+              <Route path={`${match.path}/fornecedor`}>
+                <FornecedorListComponent setTitle={setTitle} />
               </Route>
             </Switch>
             </div>

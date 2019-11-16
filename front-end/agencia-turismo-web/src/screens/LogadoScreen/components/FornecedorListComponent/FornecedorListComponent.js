@@ -1,19 +1,19 @@
 import React, { useEffect } from "react";
 import PropTypes from "prop-types";
-import styles from "./FuncionarioListComponent.module.css";
+import styles from "./FornecedorListComponent.module.css";
 import TableComponent from "../TableComponent/TableComponent";
 import Backend from "../../../../service/backend";
 
-const FuncionarioListComponent = () => {
+const FornecedorListComponent = () => {
   const [state, setState] = React.useState({});
   const [httpStatus, setHttpStatus] = React.useState();
   const [loading, setLoading] = React.useState(true);
   const request = new Backend();
 
-  const header = ["idAtendente", "nome", "cpf", "ações"];
+  const header = ["idFornecedor", "nome", "cpf", "ações"];
 
   useEffect(() => {
-    request.getAtendente().then(res => {
+    request.getFornecedor().then(res => {
       setState(res.data);
       setHttpStatus(res.status);
       setLoading(false);
@@ -22,7 +22,7 @@ const FuncionarioListComponent = () => {
 
   const search = value => {
     setLoading(true);
-    request.pesquisaAtendente(value).then(res => {
+    request.pesquisaFornecedor(value).then(res => {
       setState(res.data);
       setHttpStatus(res.status);
       setLoading(false);    
@@ -30,7 +30,7 @@ const FuncionarioListComponent = () => {
   };
 
   return (
-    <div className={styles.FuncionarioListComponent}>
+    <div className={styles.FornecedorListComponent}>
       {!loading ? (
         httpStatus >= 200 || httpStatus < 300 ? (
           <TableComponent
@@ -38,7 +38,7 @@ const FuncionarioListComponent = () => {
             setState={setState}
             header={header}
             search={search}
-            cadastroScreen={"cadastro-atendente"}
+            cadastroScreen={"cadastro-fornecedor"}
           />
         ) : (
           <span>Erro</span>
@@ -50,8 +50,8 @@ const FuncionarioListComponent = () => {
   );
 };
 
-FuncionarioListComponent.propTypes = {};
+FornecedorListComponent.propTypes = {};
 
-FuncionarioListComponent.defaultProps = {};
+FornecedorListComponent.defaultProps = {};
 
-export default FuncionarioListComponent;
+export default FornecedorListComponent;
