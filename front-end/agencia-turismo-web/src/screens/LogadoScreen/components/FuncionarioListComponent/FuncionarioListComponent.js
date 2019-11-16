@@ -8,32 +8,50 @@ const FuncionarioListComponent = () => {
   const [state, setState] = React.useState({});
   const [httpStatus, setHttpStatus] = React.useState();
   const [loading, setLoading] = React.useState(true);
+  const [empty, setEmpty] = React.useState(false);
   const request = new Backend();
 
   const header = ["idAtendente", "nome", "cpf", "ações"];
 
   useEffect(() => {
     request.getAtendente().then(res => {
+      if (res.data === "") {
+        setEmpty(true);
+      } else {
+        setEmpty(false);
+      }
       setState(res.data);
       setHttpStatus(res.status);
       setLoading(false);
     });
   }, []);
 
-  const search = (value) => {
+  const search = value => {
     setLoading(true);
     request.pesquisaAtendente(value).then(res => {
+      if (res.data === "") {
+        setEmpty(true);
+      } else {
+        setEmpty(false);
+      }
       setState(res.data);
       setHttpStatus(res.status);
-      setLoading(false);
-    })
-  } 
+      setLoading(false);    
+    });
+  };
 
   return (
     <div className={styles.FuncionarioListComponent}>
       {!loading ? (
         httpStatus >= 200 || httpStatus < 300 ? (
-          <TableComponent state={state} setState={setState} header={header} search={search} cadastroScreen={"cadastro-atendente"}/>
+          <TableComponent
+            state={state}
+            setState={setState}
+            header={header}
+            search={search}
+            cadastroScreen={"cadastro-atendente"}
+            isEmpty={empty}
+          />
         ) : (
           <span>Deu ruim</span>
         )
