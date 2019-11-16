@@ -3,8 +3,10 @@ import PropTypes from 'prop-types';
 import styles from './CadastroFornecedorComponent.module.css';
 import InputField from "../../../../components/InputField/InputField";
 import Backend from "../../../../service/backend";
+import { withRouter} from "react-router";
 
-const CadastroFornecedorComponent = ({ setTitle }) => {
+
+const CadastroFornecedorComponent = ({ setTitle , history}) => {
   const request = new Backend();
   const [values, setValues] = React.useState({
     nome: "",
@@ -25,10 +27,6 @@ const CadastroFornecedorComponent = ({ setTitle }) => {
     setValues({ ...values, [prop]: event.target.value });
   };
 
-  const handleChange2 = () => event => {
-    console.log(event.target.value);
-  };
-
   useEffect(() => {
     setTitle("CADASTRO FORNECEDOR");
   }, []);
@@ -36,9 +34,16 @@ const CadastroFornecedorComponent = ({ setTitle }) => {
   const onSubmit = () => {
     const valor = {
       ...values,
-      "id_fornecedor": 0,
+      "idFornecedor": 0,
     };
     request.createFornecedor(valor)
+    .then(res => {
+      alert("Fornecedor cadastrado com sucesso!!");
+      history.push("/logado/fornecedor");
+    })
+    .catch(err => {
+      alert("Erro ao cadastrar, tente novamente!");
+    });
   };
 
   return (
@@ -142,4 +147,4 @@ CadastroFornecedorComponent.propTypes = {};
 
 CadastroFornecedorComponent.defaultProps = {};
 
-export default CadastroFornecedorComponent;
+export default withRouter (CadastroFornecedorComponent);

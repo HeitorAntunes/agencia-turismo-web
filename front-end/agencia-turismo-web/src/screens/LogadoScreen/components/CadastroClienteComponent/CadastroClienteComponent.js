@@ -1,12 +1,13 @@
 import React, { useEffect } from "react";
-import PropTypes from "prop-types";
 import styles from "./CadastroClienteComponent.module.css";
-
 import InputField from "../../../../components/InputField/InputField";
 import Backend from "../../../../service/backend";
+import { withRouter} from "react-router";
 
-const CadastroClienteComponent = ({ setTitle }) => {
+const CadastroClienteComponent = ({ setTitle, data, history }) => {
+
   const request = new Backend();
+
   const [values, setValues] = React.useState({
     nome: "",
     email: "",
@@ -27,10 +28,6 @@ const CadastroClienteComponent = ({ setTitle }) => {
     setValues({ ...values, [prop]: event.target.value });
   };
 
-  const handleChange2 = () => event => {
-    console.log(event.target.value);
-  };
-
   useEffect(() => {
     setTitle("CADASTRO CLIENTE");
   }, []);
@@ -38,9 +35,19 @@ const CadastroClienteComponent = ({ setTitle }) => {
   const onSubmit = () => {
     const valor = {
       ...values,
-      "id_cliente": 0
+      "id_cliente": 0,
+      "id": {
+        id: 1
+      }
     };
     request.createCliente(valor)
+    .then(res => {
+      alert("Cliente cadastrado com sucesso!!");
+      history.push("/logado/cliente");
+    })
+    .catch(err => {
+      alert("Erro ao cadastrar, tente novamente!");
+    });
   };
 
   return (
@@ -163,4 +170,4 @@ CadastroClienteComponent.propTypes = {};
 
 CadastroClienteComponent.defaultProps = {};
 
-export default CadastroClienteComponent;
+export default withRouter (CadastroClienteComponent);
