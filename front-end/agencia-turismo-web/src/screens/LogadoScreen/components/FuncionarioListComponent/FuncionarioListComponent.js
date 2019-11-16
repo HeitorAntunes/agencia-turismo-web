@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import styles from "./FuncionarioListComponent.module.css";
 import TableComponent from "../TableComponent/TableComponent";
 import Backend from "../../../../service/backend";
+import CircularProgress from "@material-ui/core/CircularProgress";
 
 const FuncionarioListComponent = () => {
   const [state, setState] = React.useState({});
@@ -18,7 +19,7 @@ const FuncionarioListComponent = () => {
       setHttpStatus(res.status);
       setLoading(false);
     });
-  }
+  };
 
   useEffect(() => {
     getAllAtendentes();
@@ -29,17 +30,18 @@ const FuncionarioListComponent = () => {
     request.pesquisaAtendente(value).then(res => {
       setState(res.data);
       setHttpStatus(res.status);
-      setLoading(false);    
+      setLoading(false);
     });
   };
 
   const deleteElement = value => {
-    console.log(value)
+    console.log(value);
     setLoading(true);
-    request.delete("cadastro-atendente/" + value[header[0]]).then(res => {
-      setLoading(false);
-      getAllAtendentes();
-    });
+    request
+      .delete("cadastro-atendente/" + value[header[0]])
+      .then(res => {
+        getAllAtendentes();
+      })
   };
 
   return (
@@ -55,10 +57,15 @@ const FuncionarioListComponent = () => {
             deleteElement={deleteElement}
           />
         ) : (
-          <span>Deu ruim</span>
+          <div className={styles.erro}>
+            <span>Erro ao obter dados! </span>
+            <span>Tente novamente mais tarte</span>
+          </div>
         )
       ) : (
-        <span>carregando</span>
+        <div className={styles.carregando}>
+          <CircularProgress thickness={6} color="inherit" size={30} />
+        </div>
       )}
     </div>
   );

@@ -1,1 +1,14 @@
 .FuncionarioListComponent {}
+
+.carregando {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 40px;
+}
+
+.erro {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
