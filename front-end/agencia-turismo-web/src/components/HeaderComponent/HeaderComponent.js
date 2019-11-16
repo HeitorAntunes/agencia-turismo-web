@@ -27,11 +27,10 @@ const HeaderComponent = ({ history }) => {
       <div>
         <div className={styles.menu}>
           <div className={styles.buttons} onClick={() => onChangePage2("/logado")}> INÍCIO</div>
-          <div className={styles.buttons} onClick={() => onChangePage2("/logado/cadastro-cliente")}> CLIENTES</div>
-          <div className={styles.buttons} onClick={() => onChangePage2("/logado/cadastro-atendente")}> FUNCIONÁRIOS </div>
-          <div className={styles.buttons} onClick={() => onChangePage2("/logado/cadastro-fornecedor")}> FORNECEDORES </div>
+          <div className={styles.buttons} onClick={() => onChangePage2("/logado/cliente")}> CLIENTES</div>
+          <div className={styles.buttons} onClick={() => onChangePage2("/logado/atendente")}> FUNCIONÁRIOS </div>
+          <div className={styles.buttons} onClick={() => onChangePage2("/logado/fornecedor")}> FORNECEDORES </div>
           <div className={styles.buttons} onClick={() => onChangePage2("/logado/ordem-servico")}> ORDEM DE SERVIÇO </div>
-
           <div className={styles.buttons} onClick={() => onChangePage2("/logado/financeiro")}> FINANCEIRO </div>
         </div>
       </div>

@@ -18,7 +18,6 @@ const LoginScreen = ({ history }) => {
   };
 
   const changeScreen = prop => {
-    debugger;
     history.push(prop);
   };
 

@@ -8,7 +8,6 @@ import { withRouter } from "react-router";
 
 const LineComponent = ({ items, header, history, cadastroScreen }) => {
   const listItems = () => {
-    debugger;
     return header.map(item => <div>{items[item]}</div>);
   };
 
