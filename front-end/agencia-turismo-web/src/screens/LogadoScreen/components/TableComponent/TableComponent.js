@@ -11,8 +11,7 @@ const TableComponent = ({
   setState,
   header,
   search,
-  cadastroScreen,
-  isEmpty
+  cadastroScreen
 }) => {
   return (
     <div className={styles.TableComponent}>
@@ -21,7 +20,7 @@ const TableComponent = ({
         cadastroScreen={cadastroScreen}
       ></SearchComponent>
 
-      {isEmpty ? (
+      {state === "" ? (
         <span className={styles.vazio}>Não há resultados</span>
       ) : (
         <div>
