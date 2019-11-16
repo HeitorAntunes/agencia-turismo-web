@@ -53,10 +53,10 @@ const FuncionarioListComponent = () => {
             isEmpty={empty}
           />
         ) : (
-          <span>Deu ruim</span>
+          <span>Erro</span>
         )
       ) : (
-        <span>carregando</span>
+        <span>Carregando...</span>
       )}
     </div>
   );

@@ -23,7 +23,7 @@ const SearchComponent = ({ nameComponent = "", search, history, cadastroScreen }
       <div className={styles.searchField}>
         <div className={styles.inputField}>
           <InputField
-            text={"Pesquise"}
+            text={"Digite aqui"}
             type="text"
             handleChange={handleChange}
             field={"nome"}

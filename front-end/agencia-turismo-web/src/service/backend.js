@@ -20,6 +20,18 @@ class Backend {
       });
   }
 
+  getAtendente() {
+    return this.requester.get("/cadastro-atendente");
+  }
+
+  pesquisaAtendente(param) {
+    return this.requester.get("/cadastro-atendente/filter-atendente?value=" + param);
+  }
+
+  deleteAtendente(param) {
+    return this.requester.delete("/cadastro-atendente/" + param);
+  }
+
   createGerente(params) {
     return this.requester
       .post("/cadastro-gerente", params)
@@ -34,14 +46,6 @@ class Backend {
   async getGerente() {
     let res = await axios.get("http://localhost:8080/cadastro-gerente");
     return res;
-  }
-
-  getAtendente() {
-    return this.requester.get("/cadastro-atendente");
-  }
-
-  pesquisaAtendente(param) {
-    return this.requester.get("/cadastro-atendente/filter-atendente?value=" + param);
   }
 
   createFornecedor(params) {
@@ -71,10 +75,30 @@ class Backend {
       });
   }
 
-  async getCliente() {
-    let res = await axios.get("http://localhost:8080/cadastro-cliente");
-    return res;
+  getCliente() {
+    return this.requester.get("/cadastro-cliente");
+  }
+
+  pesquisaCliente(param) {
+    return this.requester.get("/cadastro-cliente/filter-cliente?value=" + param);
+  }
+
+  deleteCliente(param) {
+    return this.requester.delete("/cadastro-cliente/" + param);
   }
 }
+  // get(param) {
+  //   return this.requester.get(param);
+  // }
+
+  // pesquisa(param) {
+  //   return this.requester.get(param);
+  // }
+
+  // delete(param) {
+  //   return this.requester.delete(param);
+  // }
+
+  
 
 export default Backend;
