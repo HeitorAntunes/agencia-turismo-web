@@ -4,13 +4,13 @@ import styles from "./FornecedorListComponent.module.css";
 import TableComponent from "../TableComponent/TableComponent";
 import Backend from "../../../../service/backend";
 
-const FornecedorListComponent = () => {
+const FornecedorListComponent = ({ handleState }) => {
   const [state, setState] = React.useState({});
   const [httpStatus, setHttpStatus] = React.useState();
   const [loading, setLoading] = React.useState(true);
   const request = new Backend();
 
-  const header = ["idFornecedor", "nome", "cpf", "ações"];
+  const header = ["idFornecedor", "nome", "cnpj", "ações"];
 
   const getAllFornecedores = () => {
     request.getFornecedor().then(res => {
@@ -53,6 +53,7 @@ const FornecedorListComponent = () => {
             search={search}
             cadastroScreen={"cadastro-fornecedor"}
             deleteElement={deleteElement}
+            handleState={handleState}
           />
         ) : (
           <span>Erro</span>

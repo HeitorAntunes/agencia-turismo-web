@@ -81,6 +81,10 @@ class Backend {
   delete(param) {
     return this.requester.delete(param);
   }
+
+  update(url, param) {
+    return this.requester.put(url, param);
+  }
 }
 
   

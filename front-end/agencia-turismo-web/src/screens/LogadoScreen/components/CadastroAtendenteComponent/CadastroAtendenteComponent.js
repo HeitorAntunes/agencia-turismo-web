@@ -2,11 +2,18 @@ import React, { useEffect } from "react";
 import styles from "./CadastroAtendenteComponent.module.css";
 import InputField from "../../../../components/InputField/InputField";
 import Backend from "../../../../service/backend";
-import { withRouter} from "react-router";
+import { withRouter } from "react-router";
 
-const CadastroAtendenteComponent = ({ setTitle, data, history }) => {
-
+const CadastroAtendenteComponent = ({
+  setTitle,
+  data,
+  history,
+  state,
+  handleState
+}) => {
   const request = new Backend();
+
+  const [isEdit, setEdit] = React.useState(false);
 
   const [values, setValues] = React.useState({
     nome: "",
@@ -23,8 +30,6 @@ const CadastroAtendenteComponent = ({ setTitle, data, history }) => {
 
   const [speed, setSpeed] = React.useState("");
 
-  
-
   const handleChange = prop => event => {
     console.log(values);
     setValues({ ...values, [prop]: event.target.value });
@@ -34,22 +39,49 @@ const CadastroAtendenteComponent = ({ setTitle, data, history }) => {
     setTitle("CADASTRO ATENDENTE");
   }, []);
 
+  useEffect(() => {
+    if (state) {
+      setValues(state);
+      setEdit(true);
+    }
+  }, []);
+
   const onSubmit = () => {
-    const valor = {
-      ...values,
-      "id_atendente": 0,
-      "id": {
-        id: 1
-      }
-    };
-    request.createAtendente(valor)
-    .then(res => {
-      alert("Atendente cadastrado com sucesso!!");
-      history.push("/logado/atendente");
-    })
-    .catch(err => {
-      alert("Erro ao cadastrar, tente novamente!");
-    });
+    if (!isEdit) {
+      const valor = {
+        ...values,
+        idAtendente: 0,
+        id: {
+          id: 1
+        }
+      };
+      request
+        .createAtendente(valor)
+        .then(res => {
+          alert("Atendente cadastrado com sucesso!!");
+          history.push("/logado/atendente");
+        })
+        .catch(err => {
+          alert("Erro ao cadastrar, tente novamente!");
+        });
+    } else {
+      debugger;
+      const valor = {
+        ...values,
+        idAtendente: state.idAtendente,
+        id: {
+          id: 1
+        }
+      };
+      request.update("/cadastro-atendente", valor)
+      .then(res => {
+        alert("Atendente editado com sucesso!!");
+        history.push("/logado/atendente");
+      })
+      .catch(err => {
+        alert("Erro ao editar, tente novamente!");
+      });
+    }
   };
 
   return (
@@ -172,4 +204,4 @@ CadastroAtendenteComponent.propTypes = {};
 
 CadastroAtendenteComponent.defaultProps = {};
 
-export default withRouter (CadastroAtendenteComponent);
+export default withRouter(CadastroAtendenteComponent);

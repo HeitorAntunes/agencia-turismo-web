@@ -12,13 +12,15 @@ const TableComponent = ({
   header,
   search,
   cadastroScreen,
-  deleteElement
+  deleteElement,
+  handleState
 }) => {
   return (
     <div className={styles.TableComponent}>
       <SearchComponent
         search={search}
         cadastroScreen={cadastroScreen}
+        handleState={handleState}
       ></SearchComponent>
 
       {state === "" ? (
@@ -35,6 +37,7 @@ const TableComponent = ({
             header={header}
             cadastroScreen={cadastroScreen}
             deleteElement={deleteElement}
+            handleState={handleState}
           ></ContentComponent>
         </div>
       )}

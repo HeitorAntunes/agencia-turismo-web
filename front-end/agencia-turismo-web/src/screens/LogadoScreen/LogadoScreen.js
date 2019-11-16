@@ -14,9 +14,16 @@ import ClienteListComponent from "./components/ClienteListComponent/ClienteListC
 import FornecedorListComponent from "./components/FornecedorListComponent/FornecedorListComponent";
 
 const LogadoScreen = () => {
+
+  const [state, setState] = React.useState({});
+  const [title, setTitle] = React.useState("");
+
   let match = useRouteMatch();
 
-  const [title, setTitle] = React.useState("");
+
+  const handleState = (data) => {
+    setState(data);
+  }
 
   return (
     <div>
@@ -30,25 +37,25 @@ const LogadoScreen = () => {
                 <HomeComponent setTitle={setTitle} />
               </Route>
               <Route path={`${match.path}/cadastro-gerente`}>
-                <CadastroGerenteComponent setTitle={setTitle} />
+                <CadastroGerenteComponent setTitle={setTitle} state={state} handleState={handleState}/>
               </Route>
               <Route path={`${match.path}/cadastro-atendente`}>
-                <CadastroAtendenteComponent setTitle={setTitle} />
+                <CadastroAtendenteComponent setTitle={setTitle} state={state} handleState={handleState}/>
               </Route>
               <Route path={`${match.path}/cadastro-fornecedor`}>
-                <CadastroFornecedorComponent setTitle={setTitle} />
+                <CadastroFornecedorComponent setTitle={setTitle} state={state} handleState={handleState}/>
               </Route>
               <Route path={`${match.path}/cadastro-cliente`}>
-                <CadastroClienteComponent setTitle={setTitle} />
+                <CadastroClienteComponent setTitle={setTitle} state={state} handleState={handleState}/>
               </Route>
               <Route path={`${match.path}/atendente`}>
-                <FuncionarioListComponent setTitle={setTitle} />
+                <FuncionarioListComponent setTitle={setTitle} handleState={handleState}/>
               </Route>
               <Route path={`${match.path}/cliente`}>
-                <ClienteListComponent setTitle={setTitle} />
+                <ClienteListComponent setTitle={setTitle} handleState={handleState}/>
               </Route>
               <Route path={`${match.path}/fornecedor`}>
-                <FornecedorListComponent setTitle={setTitle} />
+                <FornecedorListComponent setTitle={setTitle} handleState={handleState}/>
               </Route>
             </Switch>
             </div>
