@@ -1,6 +1,5 @@
 package br.uniceub.pidi.controller;
 
-import java.util.List;
 import java.util.Optional;
 
 import javax.validation.Valid;
@@ -58,10 +57,10 @@ public class AtendenteController {
 	}
 	
 	@GetMapping("/filter-atendente")
-	public ResponseEntity<Page<AtendenteModel>> filterSells(
+	public ResponseEntity<Page<AtendenteModel>> filterAtendentes(
 			@RequestParam(defaultValue = "0") Integer pageNo,
             @RequestParam(defaultValue = "5") Integer pageSize,
-            @RequestParam(defaultValue = "id") String sortBy,
+            @RequestParam(defaultValue = "id_atendente") String sortBy,
             @RequestParam(defaultValue = "") String value) {
 		Page<AtendenteModel> list = service.getAllAtendentesFiltered(pageNo, pageSize, sortBy, value);
 		 

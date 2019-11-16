@@ -16,13 +16,13 @@ import javax.validation.constraints.Size;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-@Table(name = "tb_fornecedor")
+@Table(name = "tbFornecedor")
 public class FornecedorModel {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_fornecedor")
-	private Long id_fornecedor;
+	private Long idFornecedor;
 
 	@NotEmpty
 	@Size(max = 14)
@@ -73,12 +73,12 @@ public class FornecedorModel {
 	@OneToMany(mappedBy = "fornecedor", cascade = CascadeType.ALL)
 	private Set<OrdemServicoModel> ordem_servico;
 
-	public Long getId_fornecedor() {
-		return id_fornecedor;
+	public Long getIdFornecedor() {
+		return idFornecedor;
 	}
 
-	public void setId_fornecedor(Long id_fornecedor) {
-		this.id_fornecedor = id_fornecedor;
+	public void setIdFornecedor(Long idFornecedor) {
+		this.idFornecedor = idFornecedor;
 	}
 
 	public String getCnpj() {

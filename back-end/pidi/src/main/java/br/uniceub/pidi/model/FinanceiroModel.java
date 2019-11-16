@@ -14,12 +14,13 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
 @Entity
-@Table(name = "tb_financeiro")
+@Table(name = "tbFinanceiro")
 public class FinanceiroModel {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id_financeiro;
+	@Column(name = "id_financeiro")
+	private Long idFinanceiro;
 
 	@Column(name = "data")
 	private Date data;
@@ -39,12 +40,12 @@ public class FinanceiroModel {
 	@JoinColumn(name = "id_gerente")
 	private GerenteModel gerente;
 
-	public Long getId_financeiro() {
-		return id_financeiro;
+	public Long getIdFinanceiro() {
+		return idFinanceiro;
 	}
 
-	public void setId_financeiro(Long id_financeiro) {
-		this.id_financeiro = id_financeiro;
+	public void setIdFinanceiro(Long idFinanceiro) {
+		this.idFinanceiro = idFinanceiro;
 	}
 
 	public Date getData() {

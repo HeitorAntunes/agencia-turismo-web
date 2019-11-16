@@ -58,9 +58,9 @@ public class FornecedorController {
         return new ResponseEntity<Page<FornecedorModel>>(list, new HttpHeaders(), HttpStatus.OK);
 	}
 
-	@GetMapping("/{id_fornecedor}")
-	public ResponseEntity<FornecedorModel> get(@PathVariable Long id_fornecedor) {
-		Optional<FornecedorModel> fornecedor = repository.findById(id_fornecedor);
+	@GetMapping("/{idFornecedor}")
+	public ResponseEntity<FornecedorModel> get(@PathVariable Long idFornecedor) {
+		Optional<FornecedorModel> fornecedor = repository.findById(idFornecedor);
 
 		if (fornecedor == null) {
 			return ResponseEntity.notFound().build();
@@ -72,7 +72,7 @@ public class FornecedorController {
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
 	public FornecedorModel create(@Valid @RequestBody FornecedorModel fornecedor) {
-		Optional<FornecedorModel> existingFornecedor = repository.findById(fornecedor.getId_fornecedor());
+		Optional<FornecedorModel> existingFornecedor = repository.findById(fornecedor.getIdFornecedor());
 
 		if (existingFornecedor.isPresent()) {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST,
@@ -85,7 +85,7 @@ public class FornecedorController {
 	@PutMapping
 	@ResponseStatus(HttpStatus.ACCEPTED)
 	public ResponseEntity<FornecedorModel> update(@Valid @RequestBody FornecedorModel fornecedor) {
-		Optional<FornecedorModel> newFornecedor = repository.findById(fornecedor.getId_fornecedor());
+		Optional<FornecedorModel> newFornecedor = repository.findById(fornecedor.getIdFornecedor());
 
 		if (newFornecedor == null) {
 			return ResponseEntity.notFound().build();
@@ -95,10 +95,10 @@ public class FornecedorController {
 		}
 	}
 
-	@DeleteMapping("/{id_fornecedor}")
+	@DeleteMapping("/{idFornecedor}")
 	@ResponseStatus(HttpStatus.OK)
-	public ResponseEntity<FornecedorModel> delete(@PathVariable Long id_fornecedor) {
-		repository.deleteById(id_fornecedor);
+	public ResponseEntity<FornecedorModel> delete(@PathVariable Long idFornecedor) {
+		repository.deleteById(idFornecedor);
 		return ResponseEntity.ok().build();
 	}
 
