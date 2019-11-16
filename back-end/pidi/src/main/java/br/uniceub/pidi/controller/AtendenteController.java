@@ -60,7 +60,7 @@ public class AtendenteController {
 	public ResponseEntity<Page<AtendenteModel>> filterAtendentes(
 			@RequestParam(defaultValue = "0") Integer pageNo,
             @RequestParam(defaultValue = "5") Integer pageSize,
-            @RequestParam(defaultValue = "id_atendente") String sortBy,
+            @RequestParam(defaultValue = "idAtendente") String sortBy,
             @RequestParam(defaultValue = "") String value) {
 		Page<AtendenteModel> list = service.getAllAtendentesFiltered(pageNo, pageSize, sortBy, value);
 		 
