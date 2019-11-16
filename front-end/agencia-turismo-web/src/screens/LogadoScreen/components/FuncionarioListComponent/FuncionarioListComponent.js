@@ -5,7 +5,7 @@ import TableComponent from "../TableComponent/TableComponent";
 import Backend from "../../../../service/backend";
 import CircularProgress from "@material-ui/core/CircularProgress";
 
-const FuncionarioListComponent = () => {
+const FuncionarioListComponent = ({ handleState }) => {
   const [state, setState] = React.useState({});
   const [httpStatus, setHttpStatus] = React.useState();
   const [loading, setLoading] = React.useState(true);
@@ -55,6 +55,7 @@ const FuncionarioListComponent = () => {
             search={search}
             cadastroScreen={"cadastro-atendente"}
             deleteElement={deleteElement}
+            handleState={handleState}
           />
         ) : (
           <div className={styles.erro}>

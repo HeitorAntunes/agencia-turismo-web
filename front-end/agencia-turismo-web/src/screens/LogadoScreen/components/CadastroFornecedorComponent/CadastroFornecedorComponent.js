@@ -6,7 +6,7 @@ import Backend from "../../../../service/backend";
 import { withRouter} from "react-router";
 
 
-const CadastroFornecedorComponent = ({ setTitle , history}) => {
+const CadastroFornecedorComponent = ({ setTitle , history, state, handleState }) => {
   const request = new Backend();
   const [values, setValues] = React.useState({
     nome: "",
@@ -26,6 +26,12 @@ const CadastroFornecedorComponent = ({ setTitle , history}) => {
     console.log(values);
     setValues({ ...values, [prop]: event.target.value });
   };
+
+  useEffect(() => {
+    if(state) {
+      setValues(state)
+    }
+  }, []);
 
   useEffect(() => {
     setTitle("CADASTRO FORNECEDOR");

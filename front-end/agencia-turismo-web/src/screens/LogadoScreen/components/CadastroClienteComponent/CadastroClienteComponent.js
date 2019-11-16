@@ -4,7 +4,7 @@ import InputField from "../../../../components/InputField/InputField";
 import Backend from "../../../../service/backend";
 import { withRouter} from "react-router";
 
-const CadastroClienteComponent = ({ setTitle, data, history }) => {
+const CadastroClienteComponent = ({ setTitle, data, history, state, handleState }) => {
 
   const request = new Backend();
 
@@ -27,6 +27,12 @@ const CadastroClienteComponent = ({ setTitle, data, history }) => {
     console.log(values);
     setValues({ ...values, [prop]: event.target.value });
   };
+
+  useEffect(() => {
+    if(state) {
+      setValues(state)
+    }
+  }, []);
 
   useEffect(() => {
     setTitle("CADASTRO CLIENTE");

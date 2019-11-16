@@ -4,7 +4,7 @@ import styles from "./ClienteListComponent.module.css";
 import TableComponent from "../TableComponent/TableComponent";
 import Backend from "../../../../service/backend";
 
-const ClienteListComponent = () => {
+const ClienteListComponent = ({handleState}) => {
   const [state, setState] = React.useState({});
   const [httpStatus, setHttpStatus] = React.useState();
   const [loading, setLoading] = React.useState(true);
@@ -53,6 +53,7 @@ const ClienteListComponent = () => {
             search={search}
             cadastroScreen={"cadastro-cliente"}
             deleteElement={deleteElement}
+            handleState={handleState}
           />
         ) : (
           <span>Erro</span>
