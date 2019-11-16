@@ -4,3 +4,15 @@
     justify-content: space-between;
     padding: 2px 10px;
 }
+
+.icon {
+    cursor: pointer;
+}
+
+.content {
+    text-align: center;
+}
+
+.icons {
+    text-align: center;
+}
