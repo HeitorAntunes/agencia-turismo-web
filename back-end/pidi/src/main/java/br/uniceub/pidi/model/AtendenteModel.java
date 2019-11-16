@@ -25,7 +25,7 @@ public class AtendenteModel {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_atendente")
-	private Long id_atendente;
+	private Long idAtendente;
 	
 	@NotEmpty
 	@Size(max = 11)
@@ -88,12 +88,12 @@ public class AtendenteModel {
 	@OneToMany(mappedBy = "atendente", cascade = CascadeType.ALL)
 	private Set<OrdemServicoModel> ordem_servico;
 
-	public Long getId_atendente() {
-		return id_atendente;
+	public Long getIdAtendente() {
+		return idAtendente;
 	}
 
-	public void setId_atendente(Long id_atendente) {
-		this.id_atendente = id_atendente;
+	public void setId_atendente(Long idAtendente) {
+		this.idAtendente = idAtendente;
 	}
 
 	public String getCpf() {

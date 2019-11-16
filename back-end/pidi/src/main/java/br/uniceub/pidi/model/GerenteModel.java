@@ -25,7 +25,7 @@ public class GerenteModel {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_gerente")
-	private Long id_gerente;
+	private Long idGerente;
 	
 	@NotEmpty
 	@Size(max = 11)
@@ -88,12 +88,12 @@ public class GerenteModel {
 	@OneToMany(mappedBy = "gerente", cascade = CascadeType.ALL)
 	private Set<FinanceiroModel> financeiro;
 
-	public Long getId_gerente() {
-		return id_gerente;
+	public Long getIdGerente() {
+		return idGerente;
 	}
 
 	public void setId_gerente(Long id_gerente) {
-		this.id_gerente = id_gerente;
+		this.idGerente = idGerente;
 	}
 
 	public String getCpf() {

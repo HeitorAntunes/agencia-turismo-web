@@ -6,6 +6,8 @@ import java.util.Optional;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -16,12 +18,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
+import br.uniceub.pidi.model.AtendenteModel;
 import br.uniceub.pidi.model.FornecedorModel;
 import br.uniceub.pidi.repository.FornecedorRepository;
+import br.uniceub.pidi.service.FornecedorService;
 
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
@@ -30,10 +35,27 @@ public class FornecedorController {
 
 	@Autowired
 	private FornecedorRepository repository;
+	
+	@Autowired
+	private FornecedorService service;
 
 	@GetMapping
-	private List<FornecedorModel> list() {
-		return repository.findAll();
+	private Page<FornecedorModel> list(
+			@RequestParam(defaultValue = "0") Integer pageNo,
+            @RequestParam(defaultValue = "5") Integer pageSize,
+            @RequestParam(defaultValue = "idFornecedor") String sortBy) {
+		return service.getAllFornecedores(pageNo, pageSize, sortBy);
+	}
+	
+	@GetMapping("/filter-fornecedor")
+	public ResponseEntity<Page<FornecedorModel>> filterSells(
+			@RequestParam(defaultValue = "0") Integer pageNo,
+            @RequestParam(defaultValue = "5") Integer pageSize,
+            @RequestParam(defaultValue = "idFornecedor") String sortBy,
+            @RequestParam(defaultValue = "") String value) {
+		Page<FornecedorModel> list = service.getAllFornecedorsFiltered(pageNo, pageSize, sortBy, value);
+		 
+        return new ResponseEntity<Page<FornecedorModel>>(list, new HttpHeaders(), HttpStatus.OK);
 	}
 
 	@GetMapping("/{id_fornecedor}")

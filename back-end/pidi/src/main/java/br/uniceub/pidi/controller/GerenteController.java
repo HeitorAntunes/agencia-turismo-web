@@ -63,7 +63,7 @@ public class GerenteController {
 	@PutMapping
 	@ResponseStatus(HttpStatus.ACCEPTED)
 	public ResponseEntity<GerenteModel> update(@Valid @RequestBody GerenteModel gerente) {
-		Optional<GerenteModel> newGerente = repository.findById(gerente.getId_gerente());
+		Optional<GerenteModel> newGerente = repository.findById(gerente.getIdGerente());
 
 		if (newGerente == null) {
 			return ResponseEntity.notFound().build();

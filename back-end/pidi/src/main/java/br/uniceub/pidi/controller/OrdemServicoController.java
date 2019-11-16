@@ -49,7 +49,7 @@ public class OrdemServicoController {
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
 	public OrdemServicoModel create(@Valid @RequestBody OrdemServicoModel ordem_servico) {
-		Optional<OrdemServicoModel> existingOrdemServico = repository.findById(ordem_servico.getId_ordem_servico());
+		Optional<OrdemServicoModel> existingOrdemServico = repository.findById(ordem_servico.getIdOrdemServico());
 
 		if (existingOrdemServico.isPresent()) {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST,
@@ -62,7 +62,7 @@ public class OrdemServicoController {
 	@PutMapping
 	@ResponseStatus(HttpStatus.ACCEPTED)
 	public ResponseEntity<OrdemServicoModel> update(@Valid @RequestBody OrdemServicoModel ordem_Servico) {
-		Optional<OrdemServicoModel> newOrdemServico = repository.findById(ordem_Servico.getId_ordem_servico());
+		Optional<OrdemServicoModel> newOrdemServico = repository.findById(ordem_Servico.getIdOrdemServico());
 		if (newOrdemServico == null) {
 			return ResponseEntity.notFound().build();
 		} else {

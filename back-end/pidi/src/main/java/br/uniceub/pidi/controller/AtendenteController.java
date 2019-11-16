@@ -42,7 +42,7 @@ public class AtendenteController {
 	private Page<AtendenteModel> list(
 			@RequestParam(defaultValue = "0") Integer pageNo,
             @RequestParam(defaultValue = "5") Integer pageSize,
-            @RequestParam(defaultValue = "id") String sortBy) {
+            @RequestParam(defaultValue = "idAtendente") String sortBy) {
 		return service.getAllAtendentes(pageNo, pageSize, sortBy);
 	}
 
@@ -71,7 +71,7 @@ public class AtendenteController {
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
 	public AtendenteModel create(@Valid @RequestBody AtendenteModel atendente) {
-		Optional<AtendenteModel> existingAtendente = repository.findById(atendente.getId_atendente());
+		Optional<AtendenteModel> existingAtendente = repository.findById(atendente.getIdAtendente());
 
 		if (existingAtendente.isPresent()) {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST,
@@ -84,7 +84,7 @@ public class AtendenteController {
 	@PutMapping
 	@ResponseStatus(HttpStatus.ACCEPTED)
 	public ResponseEntity<AtendenteModel> update(@Valid @RequestBody AtendenteModel atendente) {
-		Optional<AtendenteModel> newAtendente = repository.findById(atendente.getId_atendente());
+		Optional<AtendenteModel> newAtendente = repository.findById(atendente.getIdAtendente());
 
 		if (newAtendente == null) {
 			return ResponseEntity.notFound().build();

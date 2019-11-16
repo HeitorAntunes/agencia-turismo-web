@@ -19,7 +19,7 @@ public class OrdemServicoModel {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_ordem_servico")
-	private Long id_ordem_servico;
+	private Long idOrdemServico;
 
 	@NotEmpty
 	@Size(max = 500)
@@ -45,12 +45,12 @@ public class OrdemServicoModel {
 	@JoinColumn(name = "id_fornecedor")
 	private FornecedorModel fornecedor;
 
-	public Long getId_ordem_servico() {
-		return id_ordem_servico;
+	public Long getIdOrdemServico() {
+		return idOrdemServico;
 	}
 
-	public void setId_ordem_servico(Long id_ordem_servico) {
-		this.id_ordem_servico = id_ordem_servico;
+	public void setId_ordem_servico(Long idOrdemservico) {
+		this.idOrdemServico = idOrdemservico;
 	}
 
 	public String getDescricao() {
