@@ -34,9 +34,9 @@ public class FinanceiroController {
 		return repository.findAll();
 	}
 
-	@GetMapping("/{id_financeiro}")
-	public ResponseEntity<FinanceiroModel> get(@PathVariable Long id_financeiro) {
-		Optional<FinanceiroModel> financeiro = repository.findById(id_financeiro);
+	@GetMapping("/{idFinanceiro}")
+	public ResponseEntity<FinanceiroModel> get(@PathVariable Long idFinanceiro) {
+		Optional<FinanceiroModel> financeiro = repository.findById(idFinanceiro);
 
 		if (financeiro == null) {
 			return ResponseEntity.notFound().build();
@@ -48,7 +48,7 @@ public class FinanceiroController {
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
 	public FinanceiroModel create(@Valid @RequestBody FinanceiroModel financeiro) {
-		Optional<FinanceiroModel> existingFinanceiro = repository.findById(financeiro.getId_financeiro());
+		Optional<FinanceiroModel> existingFinanceiro = repository.findById(financeiro.getIdFinanceiro());
 
 		if (existingFinanceiro.isPresent()) {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST,
@@ -61,7 +61,7 @@ public class FinanceiroController {
 	@PutMapping
 	@ResponseStatus(HttpStatus.ACCEPTED)
 	public ResponseEntity<FinanceiroModel> update(@Valid @RequestBody FinanceiroModel financeiro) {
-		Optional<FinanceiroModel> newFinanceiro = repository.findById(financeiro.getId_financeiro());
+		Optional<FinanceiroModel> newFinanceiro = repository.findById(financeiro.getIdFinanceiro());
 		if (newFinanceiro == null) {
 			return ResponseEntity.notFound().build();
 		} else {
@@ -70,10 +70,10 @@ public class FinanceiroController {
 		}
 	}
 
-	@DeleteMapping("/{id_financeiro}")
+	@DeleteMapping("/{idFinanceiro}")
 	@ResponseStatus(HttpStatus.OK)
-	public ResponseEntity<FinanceiroModel> delete(@PathVariable Long id_financeiro) {
-		repository.deleteById(id_financeiro);
+	public ResponseEntity<FinanceiroModel> delete(@PathVariable Long idFinanceiro) {
+		repository.deleteById(idFinanceiro);
 		return ResponseEntity.ok().build();
 	}
 

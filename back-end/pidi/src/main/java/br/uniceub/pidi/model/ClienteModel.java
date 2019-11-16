@@ -17,13 +17,13 @@ import javax.validation.constraints.Size;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-@Table(name = "tb_cliente")
+@Table(name = "tbCliente")
 public class ClienteModel {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_cliente")
-	private Long id_cliente;
+	private Long idCliente;
 	
 	@NotEmpty
 	@Size(max = 11)
@@ -83,12 +83,12 @@ public class ClienteModel {
 	private Set<OrdemServicoModel> ordem_servico;
 	
 
-	public Long getId_cliente() {
-		return id_cliente;
+	public Long getIdCliente() {
+		return idCliente;
 	}
 
-	public void setId_cliente(Long id_cliente) {
-		this.id_cliente = id_cliente;
+	public void setIdCliente(Long idCliente) {
+		this.idCliente = idCliente;
 	}
 
 	public String getCpf() {

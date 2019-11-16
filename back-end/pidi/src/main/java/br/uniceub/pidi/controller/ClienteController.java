@@ -1,11 +1,12 @@
 package br.uniceub.pidi.controller;
 
-import java.util.List;
 import java.util.Optional;
 
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -16,12 +17,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
 import br.uniceub.pidi.model.ClienteModel;
 import br.uniceub.pidi.repository.ClienteRepository;
+import br.uniceub.pidi.service.ClienteService;
 
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
@@ -30,15 +33,21 @@ public class ClienteController {
 
 	@Autowired
 	private ClienteRepository repository;
-
+	
+	@Autowired
+	private ClienteService service;
+	
 	@GetMapping
-	private List<ClienteModel> list() {
-		return repository.findAll();
+	private Page<ClienteModel> list(
+			@RequestParam(defaultValue = "0") Integer pageNo,
+            @RequestParam(defaultValue = "5") Integer pageSize,
+            @RequestParam(defaultValue = "idCliente") String sortBy) {
+		return service.getAllClientes(pageNo, pageSize, sortBy);
 	}
 
-	@GetMapping("/{id_cliente}")
-	public ResponseEntity<ClienteModel> get(@PathVariable Long id_cliente) {
-		Optional<ClienteModel> cliente = repository.findById(id_cliente);
+	@GetMapping("/{idCliente}")
+	public ResponseEntity<ClienteModel> get(@PathVariable Long idCliente) {
+		Optional<ClienteModel> cliente = repository.findById(idCliente);
 
 		if (cliente == null) {
 			return ResponseEntity.notFound().build();
@@ -46,11 +55,22 @@ public class ClienteController {
 
 		return ResponseEntity.ok(cliente.get());
 	}
+	
+	@GetMapping("/filter-cliente")
+	public ResponseEntity<Page<ClienteModel>> filterCliente(
+			@RequestParam(defaultValue = "0") Integer pageNo,
+            @RequestParam(defaultValue = "5") Integer pageSize,
+            @RequestParam(defaultValue = "idCliente") String sortBy,
+            @RequestParam(defaultValue = "") String value) {
+		Page<ClienteModel> list = service.getAllClientesFiltered(pageNo, pageSize, sortBy, value);
+		 
+        return new ResponseEntity<Page<ClienteModel>>(list, new HttpHeaders(), HttpStatus.OK);
+	}
 
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
 	public ClienteModel create(@Valid @RequestBody ClienteModel cliente) {
-		Optional<ClienteModel> existingCliente = repository.findById(cliente.getId_cliente());
+		Optional<ClienteModel> existingCliente = repository.findById(cliente.getIdCliente());
 
 		if (existingCliente.isPresent()) {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST,
@@ -63,7 +83,7 @@ public class ClienteController {
 	@PutMapping
 	@ResponseStatus(HttpStatus.ACCEPTED)
 	public ResponseEntity<ClienteModel> update(@Valid @RequestBody ClienteModel cliente) {
-		Optional<ClienteModel> newCliente = repository.findById(cliente.getId_cliente());
+		Optional<ClienteModel> newCliente = repository.findById(cliente.getIdCliente());
 
 		if (newCliente == null) {
 			return ResponseEntity.notFound().build();
@@ -73,10 +93,10 @@ public class ClienteController {
 		}
 	}
 
-	@DeleteMapping("/{id_cliente}")
+	@DeleteMapping("/{idCliente}")
 	@ResponseStatus(HttpStatus.OK)
-	public ResponseEntity<ClienteModel> delete(@PathVariable Long id_cliente) {
-		repository.deleteById(id_cliente);
+	public ResponseEntity<ClienteModel> delete(@PathVariable Long idCliente) {
+		repository.deleteById(idCliente);
 		return ResponseEntity.ok().build();
 	}
 

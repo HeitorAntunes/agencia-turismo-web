@@ -13,7 +13,6 @@ import br.uniceub.pidi.model.AtendenteModel;
 public interface AtendenteRepository extends JpaRepository<AtendenteModel, Long> {
 
 	Optional<AtendenteModel> findById(Long id_atendente);
-
 	Optional<AtendenteModel> findByNome(String nome);
 
 	@Query(value = "SELECT s FROM AtendenteModel s JOIN s.id u WHERE s.nome like %?1%" + "OR s.cpf like %?1%"
