@@ -26,8 +26,6 @@ const CadastroFornecedorComponent = ({
     estado: ""
   });
 
-  const [speed, setSpeed] = React.useState("");
-
   const handleChange = prop => event => {
     console.log(values);
     setValues({ ...values, [prop]: event.target.value });
@@ -54,8 +52,7 @@ const CadastroFornecedorComponent = ({
           id: 1
         }
       };
-      request
-        .createFornecedor(valor)
+      request.createFornecedor(valor)
         .then(res => {
           alert("Fornecedor cadastrado com sucesso!!");
           history.push("/logado/fornecedor");
@@ -71,8 +68,7 @@ const CadastroFornecedorComponent = ({
           id: 1
         }
       };
-      request
-        .update("/cadastro-Fornecedor", valor)
+      request.update("/cadastro-fornecedor", valor)
         .then(res => {
           alert("Fornecedor editado com sucesso!!");
           history.push("/logado/fornecedor");

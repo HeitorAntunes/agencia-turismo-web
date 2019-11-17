@@ -5,7 +5,7 @@ import TableComponent from "../TableComponent/TableComponent";
 import Backend from "../../../../service/backend";
 import CircularProgress from "@material-ui/core/CircularProgress";
 
-const FuncionarioListComponent = ({ handleState }) => {
+const FuncionarioListComponent = ({ handleState, setTitle }) => {
   const [state, setState] = React.useState({});
   const [httpStatus, setHttpStatus] = React.useState();
   const [loading, setLoading] = React.useState(true);
@@ -22,6 +22,7 @@ const FuncionarioListComponent = ({ handleState }) => {
   };
 
   useEffect(() => {
+    setTitle("Funcionários")
     getAllAtendentes();
   }, []);
 

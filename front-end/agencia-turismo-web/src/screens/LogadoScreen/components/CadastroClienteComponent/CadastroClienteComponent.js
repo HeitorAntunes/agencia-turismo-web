@@ -29,8 +29,6 @@ const CadastroClienteComponent = ({
     estado: ""
   });
 
-  const [speed, setSpeed] = React.useState("");
-
   const handleChange = prop => event => {
     console.log(values);
     setValues({ ...values, [prop]: event.target.value });
@@ -42,8 +40,8 @@ const CadastroClienteComponent = ({
 
   useEffect(() => {
     if(state) {
-      setValues(state);
       setEdit(true);
+      setValues(state);
     }
   }, []);
 
@@ -52,9 +50,6 @@ const CadastroClienteComponent = ({
     const valor = {
       ...values,
       idCliente: 0,
-      id: {
-        id: 1
-      }
     };
     request.createCliente(valor)
     .then(res => {
@@ -65,13 +60,9 @@ const CadastroClienteComponent = ({
       alert("Erro ao cadastrar, tente novamente!");
     });
 } else {
-  
   const valor = {
     ...values,
     idCliente: state.idCliente,
-    id: {
-      id: 1
-    }
   };
   request.update("/cadastro-cliente", valor)
   .then(res => {
