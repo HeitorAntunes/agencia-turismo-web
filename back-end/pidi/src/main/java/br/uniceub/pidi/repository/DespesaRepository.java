@@ -8,7 +8,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
-import br.uniceub.pidi.model.ClienteModel;
 import br.uniceub.pidi.model.DespesaModel;
 
 public interface DespesaRepository extends JpaRepository<DespesaModel, Long> {

@@ -31,6 +31,11 @@ public class OrdemServicoModel {
 	private Double valor;
 
 	@NotEmpty
+	@Size(max = 10)
+	@Column(name = "data")
+	private String data;
+	
+	@NotEmpty
 	@Size(max = 2)
 	@Column(name = "status")
 	private String status;
@@ -106,7 +111,14 @@ public class OrdemServicoModel {
 	public void setIdOrdemServico(Long idOrdemServico) {
 		this.idOrdemServico = idOrdemServico;
 	}
-	
+
+	public String getData() {
+		return data;
+	}
+
+	public void setData(String data) {
+		this.data = data;
+	}
 	
 
 }

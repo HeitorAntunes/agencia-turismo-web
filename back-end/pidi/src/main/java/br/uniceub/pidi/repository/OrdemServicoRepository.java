@@ -15,8 +15,8 @@ public interface OrdemServicoRepository extends JpaRepository<OrdemServicoModel,
 	Optional<OrdemServicoModel> findById(Long id_ordem_servico);
 
 	@Query(value = "SELECT s FROM OrdemServicoModel s JOIN s.cliente c WHERE c.cpf like %?1%" + "OR c.nome like %?1%"
-			+ "OR c.email like %?1%", countQuery = "SELECT count(*) FROM OrdemServicoModel s JOIN s.cliente c WHERE c.nome like %?1%"
-					+ "OR c.cpf like %?1%" + "OR c.nome like %?1%" + "OR c.email like %?1%", nativeQuery = false)
+			+ "OR c.email like %?1%" + "OR s.data like %?1%", countQuery = "SELECT count(*) FROM OrdemServicoModel s JOIN s.cliente c WHERE c.nome like %?1%"
+					+ "OR c.cpf like %?1%" + "OR c.nome like %?1%" + "OR c.email like %?1%" + "OR s.data like %?1%", nativeQuery = false)
 	Page<OrdemServicoModel> filterOrdemServico(@Param("value") String value, Pageable pageable);
 
 }
