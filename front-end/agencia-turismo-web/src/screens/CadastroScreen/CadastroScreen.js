@@ -4,11 +4,9 @@ import styles from "./CadastroScreen.module.css";
 import HeaderComponent from "../../components/HeaderComponent/HeaderComponent";
 import LogadoScreen from "../LogadoScreen/LogadoScreen";
 
-const CadastroScreen = () => (
-  <div>
-    <LogadoScreen> </LogadoScreen>
-  </div>
-);
+const CadastroScreen = () => {
+  return <div>Cadastro scrren</div>;
+};
 
 CadastroScreen.propTypes = {};
 

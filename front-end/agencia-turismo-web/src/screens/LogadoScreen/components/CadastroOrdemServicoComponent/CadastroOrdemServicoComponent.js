@@ -25,7 +25,8 @@ const CadastroOrdemServicoComponent = ({
     },
     descricao: "",
     valor: "R$ ",
-    status: ""
+    status: "",
+    data: ""
   });
 
   const [atendente, setAtendente] = React.useState({});
@@ -150,6 +151,17 @@ const CadastroOrdemServicoComponent = ({
           handleChange={handleChange}
           field={"descricao"}
           value={values.descricao}
+        />
+      </div>
+
+      <span className={styles.nameField}>Data</span>
+      <div className={styles.valor}>
+        <InputField
+          text={"02/01/2019"}
+          type="text"
+          handleChange={handleChange}
+          field={"data"}
+          value={values.data}
         />
       </div>
 

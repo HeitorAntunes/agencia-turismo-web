@@ -19,7 +19,6 @@ const LineComponent = ({
 }) => {
   const listItems = () => {
     return header.map(item => {
-      debugger;
       if (
         item.toLocaleUpperCase() === "CLIENTE" ||
         item.toLocaleUpperCase() === "FORNECEDOR" ||

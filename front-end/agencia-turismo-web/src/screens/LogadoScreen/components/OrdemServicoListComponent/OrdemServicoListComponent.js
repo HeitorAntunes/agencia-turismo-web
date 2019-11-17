@@ -20,14 +20,11 @@ const OrdemServicoListComponent = ({ handleState, setTitle }) => {
     "cliente",
     "fornecedor",
     "atendente",
-    "valor"
-  ];
-
-  const header2 = [
-    "idDespesa",
     "data",
     "valor"
   ];
+
+  const header2 = ["idDespesa", "data", "valor"];
 
   const getAllOrdemServicos = () => {
     request.get("/cadastro-ordem-servico").then(res => {
@@ -53,11 +50,13 @@ const OrdemServicoListComponent = ({ handleState, setTitle }) => {
 
   const search = value => {
     setLoading(true);
-    request.get("/cadastro-ordem-servico/filter-ordemServico?value=" + value).then(res => {
-      setState(res.data);
-      setHttpStatus(res.status);
-      setLoading(false);
-    });
+    request
+      .get("/cadastro-ordem-servico/filter-ordemServico?value=" + value)
+      .then(res => {
+        setState(res.data);
+        setHttpStatus(res.status);
+        setLoading(false);
+      });
   };
 
   const search2 = value => {

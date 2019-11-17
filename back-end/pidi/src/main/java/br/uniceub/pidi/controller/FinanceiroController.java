@@ -1,5 +1,7 @@
 package br.uniceub.pidi.controller;
 
+import java.util.Dictionary;
+import java.util.Hashtable;
 import java.util.List;
 import java.util.Optional;
 
@@ -10,6 +12,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,21 +25,68 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
+import br.uniceub.pidi.model.DespesaModel;
 import br.uniceub.pidi.model.FinanceiroModel;
-import br.uniceub.pidi.model.FornecedorModel;
+import br.uniceub.pidi.model.OrdemServicoModel;
+import br.uniceub.pidi.repository.DespesaRepository;
 import br.uniceub.pidi.repository.FinanceiroRepository;
+import br.uniceub.pidi.repository.OrdemServicoRepository;
 import br.uniceub.pidi.service.FinanceiroService;
-import br.uniceub.pidi.service.FornecedorService;
 
+@CrossOrigin("http://localhost:3000")
 @RestController
 @RequestMapping("/cadastro-financeiro")
 public class FinanceiroController {
 	
 	@Autowired
 	private FinanceiroRepository repository;
-
+	
 	@Autowired
 	private FinanceiroService service;
+
+	@Autowired
+	private DespesaRepository despesaRepository;
+	
+	@Autowired
+	private OrdemServicoRepository ordemServicoRepository;
+	
+	@GetMapping("/chart")
+	private Dictionary<String, Double> chart() {
+		Dictionary<String, Double> values = new Hashtable<String, Double>();
+		int i = 0;
+		Double value = (double) 0;
+		List<DespesaModel> despesas = despesaRepository.findAll();
+		DespesaModel aux;
+		OrdemServicoModel aux2;
+		List<OrdemServicoModel> ordens = ordemServicoRepository.findAll();
+		
+		for(i = 0; i < ordens.size(); i++) {
+			aux2 = ordens.get(i);
+			if(aux2.getStatus().equals("CF")) {
+			value = (Double) values.get(aux2.getData().substring(3));
+			if(value != null) {
+				value = value + aux2.getValor();
+				values.put(aux2.getData().substring(3), value);
+			} else {
+				values.put(aux2.getData().substring(3), aux2.getValor());
+			}
+			}
+		}
+		
+		for(i = 0; i < despesas.size(); i++) {
+			aux = despesas.get(i);
+			value = (Double) values.get(aux.getData().substring(3));
+			if(value != null) {
+				value = value - aux.getValor();
+				values.put(aux.getData().substring(3), value);
+			} else {
+				values.put(aux.getData().substring(3), aux.getValor()*-1);
+			}
+		}
+		return values;
+		
+		
+	}
 
 	@GetMapping
 	private Page<FinanceiroModel> list(

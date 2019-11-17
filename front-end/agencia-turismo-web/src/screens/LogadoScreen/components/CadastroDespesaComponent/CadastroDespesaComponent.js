@@ -14,7 +14,6 @@ const CadastroDespesaComponent = ({
 }) => {
   const request = new Backend();
 
-
   const [values, setValues] = React.useState({
     data: "",
     valor: "R$ ",
@@ -31,23 +30,20 @@ const CadastroDespesaComponent = ({
   }, []);
 
   const onSubmit = () => {
-      const valor = {
-        ...values,
-        valor: Number(values.valor.replace(/\D/g, "")),
-        idDespesa: 0
-      };
-      request
-        .post("/cadastro-despesa", valor)
-        .then(res => {
-          debugger;
-          alert("Despesa cadastrada com sucesso!!");
-          history.push("/logado/ordem-servico");
-        })
-        .catch(err => {
-          debugger;
-          alert("Erro ao cadastrar, tente novamente!");
-        });
-  
+    const valor = {
+      ...values,
+      valor: Number(values.valor.replace(/\D/g, "")),
+      idDespesa: 0
+    };
+    request
+      .post("/cadastro-despesa", valor)
+      .then(res => {
+        alert("Despesa cadastrada com sucesso!!");
+        history.push("/logado/ordem-servico");
+      })
+      .catch(err => {
+        alert("Erro ao cadastrar, tente novamente!");
+      });
   };
 
   return (
