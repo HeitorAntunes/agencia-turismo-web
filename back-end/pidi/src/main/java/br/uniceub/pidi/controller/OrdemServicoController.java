@@ -67,31 +67,6 @@ public class OrdemServicoController {
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
 	public OrdemServicoModel create(@Valid @RequestBody OrdemServicoModel ordem_servico) {
-		Optional<OrdemServicoModel> existingOrdemServico = repository.findById(ordem_servico.getIdOrdemServico());
-
-		if (existingOrdemServico.isPresent()) {
-			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Já existe um OrdemServico com este CPF");
-		}
-
 		return repository.save(ordem_servico);
-	}
-
-	@PutMapping
-	@ResponseStatus(HttpStatus.ACCEPTED)
-	public ResponseEntity<OrdemServicoModel> update(@Valid @RequestBody OrdemServicoModel ordem_Servico) {
-		Optional<OrdemServicoModel> newOrdemServico = repository.findById(ordem_Servico.getIdOrdemServico());
-		if (newOrdemServico == null) {
-			return ResponseEntity.notFound().build();
-		} else {
-			this.repository.save(ordem_Servico);
-			return ResponseEntity.ok().build();
-		}
-	}
-
-	@DeleteMapping("/{idOrdemServico}")
-	@ResponseStatus(HttpStatus.OK)
-	public ResponseEntity<OrdemServicoModel> delete(@PathVariable Long idOrdemServico) {
-		repository.deleteById(idOrdemServico);
-		return ResponseEntity.ok().build();
 	}
 }

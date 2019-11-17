@@ -25,13 +25,15 @@ public class OrdemServicoModel {
 	@Size(max = 500)
 	@Column(name = "descricao")
 	private String descricao;
-
+	
 	@NotNull
 	@Column(name = "valor")
 	private Double valor;
 
+	@NotEmpty
+	@Size(max = 2)
 	@Column(name = "status")
-	private boolean status;
+	private String status;
 
 	@ManyToOne
 	@JoinColumn(name = "id_cliente")

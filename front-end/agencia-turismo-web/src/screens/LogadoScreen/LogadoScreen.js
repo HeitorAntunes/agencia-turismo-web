@@ -12,6 +12,7 @@ import HomeComponent from "./components/HomeComponent/HomeComponent";
 import FuncionarioListComponent from "./components/FuncionarioListComponent/FuncionarioListComponent";
 import ClienteListComponent from "./components/ClienteListComponent/ClienteListComponent";
 import FornecedorListComponent from "./components/FornecedorListComponent/FornecedorListComponent";
+import CadastroOrdemServicoComponent from "./components/CadastroOrdemServicoComponent/CadastroOrdemServicoComponent";
 
 const LogadoScreen = () => {
   const [state, setState] = React.useState({});
@@ -36,6 +37,13 @@ const LogadoScreen = () => {
               </Route>
               <Route path={`${match.path}/cadastro-gerente`}>
                 <CadastroGerenteComponent
+                  setTitle={setTitle}
+                  state={state}
+                  handleState={handleState}
+                />
+              </Route>
+              <Route path={`${match.path}/cadastro-ordem-servico`}>
+                <CadastroOrdemServicoComponent
                   setTitle={setTitle}
                   state={state}
                   handleState={handleState}

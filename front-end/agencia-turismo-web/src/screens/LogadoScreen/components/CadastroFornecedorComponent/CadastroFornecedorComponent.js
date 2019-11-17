@@ -39,8 +39,8 @@ const CadastroFornecedorComponent = ({
 
   useEffect(() => {
     if (state) {
-      setValues(state);
       setEdit(true);
+      setValues(state);
     }
   }, []);
 

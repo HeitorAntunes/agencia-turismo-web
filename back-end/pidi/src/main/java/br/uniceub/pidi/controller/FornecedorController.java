@@ -42,7 +42,7 @@ public class FornecedorController {
 	@GetMapping
 	private Page<FornecedorModel> list(
 			@RequestParam(defaultValue = "0") Integer pageNo,
-            @RequestParam(defaultValue = "5") Integer pageSize,
+            @RequestParam(defaultValue = "10000") Integer pageSize,
             @RequestParam(defaultValue = "idFornecedor") String sortBy) {
 		return service.getAllFornecedores(pageNo, pageSize, sortBy);
 	}
