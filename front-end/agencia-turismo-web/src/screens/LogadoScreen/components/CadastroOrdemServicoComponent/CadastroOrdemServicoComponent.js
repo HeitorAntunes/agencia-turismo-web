@@ -29,12 +29,6 @@ const CadastroOrdemServicoComponent = ({
     setTitle("CADASTRO ORDEM SERVIÇO");
   }, []);
 
-  useEffect(() => {
-    if (state) {
-      setValues(state);
-    }
-  }, []);
-
   const onSubmit = () => {
     const valor = {
       ...values,

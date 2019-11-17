@@ -9,7 +9,8 @@ const CadastroAtendenteComponent = ({
   data,
   history,
   state,
-  handleState
+  handleState,
+  user
 }) => {
   const request = new Backend();
   const [isEdit, setEdit] = React.useState(false);
@@ -39,7 +40,7 @@ const CadastroAtendenteComponent = ({
   }, []);
 
   useEffect(() => {
-    if (state) {
+    if (state.nome) {
       setValues(state);
       setEdit(true);
     }
@@ -51,7 +52,7 @@ const CadastroAtendenteComponent = ({
         ...values,
         idAtendente: 0,
         id: {
-          id: 1
+          id: user
         }
       };
       request
@@ -68,7 +69,7 @@ const CadastroAtendenteComponent = ({
         ...values,
         idAtendente: state.idAtendente,
         id: {
-          id: 1
+          id: user
         }
       };
       request

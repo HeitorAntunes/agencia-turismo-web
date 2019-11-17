@@ -26,7 +26,6 @@ const LogadoScreen = ({ history }) => {
 
   useEffect(() => {
     var retrievedObject = JSON.parse(localStorage.getItem("user"));
-    debugger;
     if (retrievedObject === null) {
       history.push("");
     }
@@ -54,6 +53,7 @@ const LogadoScreen = ({ history }) => {
                   setTitle={setTitle}
                   state={state}
                   handleState={handleState}
+                  user={user.id}
                 />
               </Route>
               <Route path={`${match.path}/cadastro-ordem-servico`}>
@@ -61,6 +61,7 @@ const LogadoScreen = ({ history }) => {
                   setTitle={setTitle}
                   state={state}
                   handleState={handleState}
+                  user={user.id}
                 />
               </Route>
               <Route path={`${match.path}/cadastro-atendente`}>
@@ -68,6 +69,7 @@ const LogadoScreen = ({ history }) => {
                   setTitle={setTitle}
                   state={state}
                   handleState={handleState}
+                  user={user.id}
                 />
               </Route>
               <Route path={`${match.path}/cadastro-fornecedor`}>
@@ -75,6 +77,7 @@ const LogadoScreen = ({ history }) => {
                   setTitle={setTitle}
                   state={state}
                   handleState={handleState}
+                  user={user.id}
                 />
               </Route>
               <Route path={`${match.path}/cadastro-cliente`}>
@@ -82,24 +85,28 @@ const LogadoScreen = ({ history }) => {
                   setTitle={setTitle}
                   state={state}
                   handleState={handleState}
+                  user={user.id}
                 />
               </Route>
               <Route path={`${match.path}/atendente`}>
                 <FuncionarioListComponent
                   setTitle={setTitle}
                   handleState={handleState}
+                  user={user.id}
                 />
               </Route>
               <Route path={`${match.path}/cliente`}>
                 <ClienteListComponent
                   setTitle={setTitle}
                   handleState={handleState}
+                  user={user.id}
                 />
               </Route>
               <Route path={`${match.path}/fornecedor`}>
                 <FornecedorListComponent
                   setTitle={setTitle}
                   handleState={handleState}
+                  user={user.id}
                 />
               </Route>
             </Switch>

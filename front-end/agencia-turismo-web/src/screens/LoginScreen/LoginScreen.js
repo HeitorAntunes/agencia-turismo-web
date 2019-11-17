@@ -38,7 +38,6 @@ const LoginScreen = ({ history }) => {
         }
       })
       .catch(res => {
-        debugger;
         alert(res.response.data.message);
       });
   };

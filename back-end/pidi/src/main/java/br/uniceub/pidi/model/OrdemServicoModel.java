@@ -71,14 +71,17 @@ public class OrdemServicoModel {
 		this.valor = valor;
 	}
 
-	public boolean isStatus() {
+	public String getStatus() {
 		return status;
 	}
 
-	public void setStatus(boolean status) {
+	public void setStatus(String status) {
 		this.status = status;
 	}
 
+	public void setIdOrdemServico(Long idOrdemServico) {
+		this.idOrdemServico = idOrdemServico;
+	}
 
 	public ClienteModel getCliente() {
 		return cliente;
