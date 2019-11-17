@@ -11,7 +11,7 @@ const FornecedorListComponent = ({ handleState, setTitle }) => {
   const [loading, setLoading] = React.useState(true);
   const request = new Backend();
 
-  const header = ["idFornecedor", "nome", "cpf", "ações"];
+  const header = ["idFornecedor", "nome", "cnpj", "ações"];
 
   const getAllFornecedores = () => {
     request.getFornecedor().then(res => {
@@ -22,7 +22,7 @@ const FornecedorListComponent = ({ handleState, setTitle }) => {
   };
 
   useEffect(() => {
-    setTitle("Fornecedores")
+    setTitle("Fornecedores");
     getAllFornecedores();
   }, []);
 

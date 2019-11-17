@@ -5,13 +5,13 @@ import Backend from "../../../../service/backend";
 import { withRouter } from "react-router";
 
 const CadastroClienteComponent = ({
-  setTitle, 
+  setTitle,
   data,
   history,
   state,
-  handleState
+  handleState,
+  user
 }) => {
-
   const request = new Backend();
 
   const [isEdit, setEdit] = React.useState(false);
@@ -39,7 +39,7 @@ const CadastroClienteComponent = ({
   }, []);
 
   useEffect(() => {
-    if(state) {
+    if (state.nome) {
       setEdit(true);
       setValues(state);
     }
@@ -47,34 +47,35 @@ const CadastroClienteComponent = ({
 
   const onSubmit = () => {
     if (!isEdit) {
-    const valor = {
-      ...values,
-      idCliente: 0,
-    };
-    request.createCliente(valor)
-    .then(res => {
-      alert("Cliente cadastrado com sucesso!!");
-      history.push("/logado/cliente");
-    })
-    .catch(err => {
-      alert("Erro ao cadastrar, tente novamente!");
-    });
-} else {
-  const valor = {
-    ...values,
-    idCliente: state.idCliente,
+      const valor = {
+        ...values,
+        idCliente: 0
+      };
+      request
+        .createCliente(valor)
+        .then(res => {
+          alert("Cliente cadastrado com sucesso!!");
+          history.push("/logado/cliente");
+        })
+        .catch(err => {
+          alert("Erro ao cadastrar, tente novamente!");
+        });
+    } else {
+      const valor = {
+        ...values,
+        idCliente: state.idCliente
+      };
+      request
+        .update("/cadastro-cliente", valor)
+        .then(res => {
+          alert("Cliente editado com sucesso!!");
+          history.push("/logado/cliente");
+        })
+        .catch(err => {
+          alert("Erro ao editar, tente novamente!");
+        });
+    }
   };
-  request.update("/cadastro-cliente", valor)
-  .then(res => {
-    alert("Cliente editado com sucesso!!");
-    history.push("/logado/cliente");
-  })
-  .catch(err => {
-    alert("Erro ao editar, tente novamente!");
-  });
-}
-};
-
 
   return (
     <div>
@@ -196,4 +197,4 @@ CadastroClienteComponent.propTypes = {};
 
 CadastroClienteComponent.defaultProps = {};
 
-export default withRouter (CadastroClienteComponent);
+export default withRouter(CadastroClienteComponent);

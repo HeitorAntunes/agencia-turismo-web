@@ -9,7 +9,8 @@ const CadastroFornecedorComponent = ({
   setTitle,
   history,
   state,
-  handleState
+  handleState,
+  user
 }) => {
   const request = new Backend();
   const [isEdit, setEdit] = React.useState(false);
@@ -36,14 +37,15 @@ const CadastroFornecedorComponent = ({
   }, []);
 
   useEffect(() => {
-    if (state) {
+    if (state.nome) {
       setEdit(true);
       setValues(state);
+    } else {
+      setEdit(false);
     }
   }, []);
 
   const onSubmit = () => {
-    debugger;
     if (!isEdit) {
       const valor = {
         ...values,
@@ -52,7 +54,8 @@ const CadastroFornecedorComponent = ({
           id: 1
         }
       };
-      request.createFornecedor(valor)
+      request
+        .createFornecedor(valor)
         .then(res => {
           alert("Fornecedor cadastrado com sucesso!!");
           history.push("/logado/fornecedor");
@@ -65,10 +68,11 @@ const CadastroFornecedorComponent = ({
         ...values,
         idFornecedor: state.idFornecedor,
         id: {
-          id: 1
+          id: user
         }
       };
-      request.update("/cadastro-fornecedor", valor)
+      request
+        .update("/cadastro-fornecedor", valor)
         .then(res => {
           alert("Fornecedor editado com sucesso!!");
           history.push("/logado/fornecedor");
