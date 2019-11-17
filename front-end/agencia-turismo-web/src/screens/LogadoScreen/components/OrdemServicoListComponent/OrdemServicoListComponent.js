@@ -11,7 +11,14 @@ const OrdemServicoListComponent = ({ handleState, setTitle }) => {
   const [loading, setLoading] = React.useState(true);
   const request = new Backend();
 
-  const header = ["status", "idOrdemServico", "cliente", "valor"];
+  const header = [
+    "status",
+    "idOrdemServico",
+    "cliente",
+    "fornecedor",
+    "atendente",
+    "valor"
+  ];
 
   const getAllOrdemServicos = () => {
     request.get("/cadastro-ordem-servico").then(res => {
@@ -28,7 +35,7 @@ const OrdemServicoListComponent = ({ handleState, setTitle }) => {
 
   const search = value => {
     setLoading(true);
-    request.pesquisaOrdemServico(value).then(res => {
+    request.get("/cadastro-ordem-servico/filter-ordemServico?value=" + value).then(res => {
       setState(res.data);
       setHttpStatus(res.status);
       setLoading(false);
@@ -46,6 +53,7 @@ const OrdemServicoListComponent = ({ handleState, setTitle }) => {
             search={search}
             cadastroScreen={"cadastro-ordem-servico"}
             handleState={handleState}
+            haveAcoes={false}
           />
         ) : (
           <div className={styles.erro}>

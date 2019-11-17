@@ -59,7 +59,7 @@ public class OrdemServicoController {
 	public ResponseEntity<Page<OrdemServicoModel>> filterOrdemServicos(
 			@RequestParam(defaultValue = "0") Integer pageNo,
             @RequestParam(defaultValue = "10000") Integer pageSize,
-            @RequestParam(defaultValue = "id_ordemServico") String sortBy,
+            @RequestParam(defaultValue = "idOrdemServico") String sortBy,
             @RequestParam(defaultValue = "") String value) {
 		Page<OrdemServicoModel> list = service.getAllOrdemServicosFiltered(pageNo, pageSize, sortBy, value);
 		 

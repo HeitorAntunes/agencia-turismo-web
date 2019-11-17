@@ -28,7 +28,6 @@ public class UserModel {
 	@NotEmpty
 	@Size(max = 50)
 	@Column(name = "password")
-	@JsonIgnore
 	private String password;
 
 	@NotEmpty

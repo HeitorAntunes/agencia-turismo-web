@@ -14,16 +14,46 @@ const CadastroOrdemServicoComponent = ({
   const request = new Backend();
 
   const [values, setValues] = React.useState({
-    cliente: "",
+    cliente: {
+      idCliente: 1
+    },
+    atendente: {
+      idAtendente: 1
+    },
+    fornecedor: {
+      idFornecedor: 1
+    },
     descricao: "",
     valor: "R$ ",
     status: ""
   });
 
+  const [atendente, setAtendente] = React.useState({});
+  const [cliente, setCliente] = React.useState({});
+  const [fornecedor, setFornecedor] = React.useState({});
+
   const handleChange = prop => event => {
     console.log(values);
     setValues({ ...values, [prop]: event.target.value });
   };
+
+  useEffect(() => {
+    request.get("/cadastro-atendente").then(res => {
+      setAtendente(res.data);
+    });
+  }, []);
+
+  useEffect(() => {
+    request.get("/cadastro-cliente").then(res => {
+      setCliente(res.data);
+    });
+  }, []);
+
+  useEffect(() => {
+    request.get("/cadastro-fornecedor").then(res => {
+      setFornecedor(res.data);
+    });
+  }, []);
 
   useEffect(() => {
     setTitle("CADASTRO ORDEM SERVIÇO");
@@ -32,13 +62,14 @@ const CadastroOrdemServicoComponent = ({
   const onSubmit = () => {
     const valor = {
       ...values,
+      valor: Number(values.valor.replace(/\D/g, "")),
       idOrdemServico: 0
     };
     request
       .post("/cadastro-ordem-servico", valor)
       .then(res => {
         alert("OrdemServico cadastrado com sucesso!!");
-        history.push("/logado/ordemServico");
+        history.push("/logado/ordem-servico");
       })
       .catch(err => {
         alert("Erro ao cadastrar, tente novamente!");
@@ -50,12 +81,51 @@ const CadastroOrdemServicoComponent = ({
       <span className={styles.nameField}>Cliente</span>
       <select
         onChange={e => {
-          setValues({ ...values, cliente: e.target.value });
+          setValues({ ...values, cliente: { idCliente: e.target.value } });
         }}
       >
-        <option defaultValue value=""></option>
-        <option value="M">Heitor</option>
-        <option value="F">Matheus</option>
+        <option>Selecione um cliente</option>
+        {cliente.content &&
+          cliente.content.map(item => (
+            <option key={item.idCliente} value={item.idCliente}>
+              {item.nome}
+            </option>
+          ))}
+      </select>
+      <br></br>
+
+      <span className={styles.nameField}>Atendente</span>
+      <select
+        onChange={e => {
+          setValues({ ...values, atendente: { idAtendente: e.target.value } });
+        }}
+      >
+        <option>Selecione um atendente</option>
+        {atendente.content &&
+          atendente.content.map(item => (
+            <option key={item.idAtendente} value={item.idAtendente}>
+              {item.nome}
+            </option>
+          ))}
+      </select>
+      <br></br>
+
+      <span className={styles.nameField}>Fornecedor</span>
+      <select
+        onChange={e => {
+          setValues({
+            ...values,
+            fornecedor: { idFornecedor: e.target.value }
+          });
+        }}
+      >
+        <option>Selecione um fornecedor</option>
+        {fornecedor.content &&
+          fornecedor.content.map(item => (
+            <option key={item.idFornecedor} value={item.idFornecedor}>
+              {item.nome}
+            </option>
+          ))}
       </select>
       <br></br>
 

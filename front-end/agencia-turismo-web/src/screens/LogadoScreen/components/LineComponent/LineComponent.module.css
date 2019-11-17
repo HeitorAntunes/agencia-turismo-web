@@ -1,18 +1,23 @@
 .LineComponent {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 2px 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2px 10px;
 }
 
 .icon {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .content {
-    text-align: center;
+  text-align: center;
 }
 
 .icons {
-    text-align: center;
+  text-align: center;
+}
+
+.iconStatus {
+  width: 24px;
+  height: 24px;
 }

@@ -85,7 +85,7 @@ CREATE TABLE TB_ORDEM_SERVICO(
     id_ordem_servico serial PRIMARY KEY,
     descricao VARCHAR(500) NOT NULL,
     valor double precision NOT NULL,
-    status boolean NOT NULL,
+    status VARCHAR(2) NOT NULL,
     id_atendente integer NOT NULL,
     id_fornecedor integer NOT NULL,
     id_cliente integer NOT NULL,
