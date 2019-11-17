@@ -13,6 +13,7 @@ import FuncionarioListComponent from "./components/FuncionarioListComponent/Func
 import ClienteListComponent from "./components/ClienteListComponent/ClienteListComponent";
 import FornecedorListComponent from "./components/FornecedorListComponent/FornecedorListComponent";
 import CadastroOrdemServicoComponent from "./components/CadastroOrdemServicoComponent/CadastroOrdemServicoComponent";
+import OrdemServicoListComponent from "./components/OrdemServicoListComponent/OrdemServicoListComponent";
 
 const LogadoScreen = ({ history }) => {
   const [user, setUser] = React.useState({});
@@ -98,6 +99,12 @@ const LogadoScreen = ({ history }) => {
               </Route>
               <Route path={`${match.path}/fornecedor`}>
                 <FornecedorListComponent
+                  setTitle={setTitle}
+                  handleState={handleState}
+                />
+              </Route>
+              <Route path={`${match.path}/ordem-servico`}>
+                <OrdemServicoListComponent
                   setTitle={setTitle}
                   handleState={handleState}
                 />

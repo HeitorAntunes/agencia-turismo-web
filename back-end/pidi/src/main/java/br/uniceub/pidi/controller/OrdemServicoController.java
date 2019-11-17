@@ -9,6 +9,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,8 +26,9 @@ import br.uniceub.pidi.model.OrdemServicoModel;
 import br.uniceub.pidi.repository.OrdemServicoRepository;
 import br.uniceub.pidi.service.OrdemServicoService;
 
+@CrossOrigin("http://localhost:3000")
 @RestController
-@RequestMapping("/cadastro-ordem_servico")
+@RequestMapping("/cadastro-ordem-servico")
 public class OrdemServicoController {
 
 	@Autowired

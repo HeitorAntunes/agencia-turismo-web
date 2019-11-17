@@ -41,7 +41,7 @@ const CadastroOrdemServicoComponent = ({
       idOrdemServico: 0
     };
     request
-      .createOrdemServico(valor)
+      .post("/cadastro-ordem-servico", valor)
       .then(res => {
         alert("OrdemServico cadastrado com sucesso!!");
         history.push("/logado/ordemServico");
