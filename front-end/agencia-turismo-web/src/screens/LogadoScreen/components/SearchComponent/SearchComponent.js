@@ -6,7 +6,7 @@ import PersonAdd from "../../../../assets/person_add-24px.svg";
 import SearchIcon from "../../../../assets/search-24px.svg";
 import {withRouter} from "react-router";
 
-const SearchComponent = ({ nameComponent = "", search, history, cadastroScreen, handleState }) => {
+const SearchComponent = ({ nameComponent = "", search, history, cadastroScreen, handleState, nome }) => {
   const [value, setValue] = React.useState("");
 
   const handleChange = prop => event => {
@@ -20,7 +20,7 @@ const SearchComponent = ({ nameComponent = "", search, history, cadastroScreen, 
 
   return (
     <div className={styles.SearchComponent}>
-      <span className={styles.search}>Pesquisar {nameComponent}</span>
+      <span className={styles.search}>Pesquisar {nome}</span>
       <div className={styles.searchField}>
         <div className={styles.inputField}>
           <InputField

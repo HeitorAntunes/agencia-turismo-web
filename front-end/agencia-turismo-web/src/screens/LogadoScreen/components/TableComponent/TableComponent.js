@@ -14,7 +14,8 @@ const TableComponent = ({
   cadastroScreen,
   deleteElement,
   handleState,
-  haveAcoes
+  haveAcoes,
+  nome
 }) => {
   return (
     <div className={styles.TableComponent}>
@@ -22,6 +23,7 @@ const TableComponent = ({
         search={search}
         cadastroScreen={cadastroScreen}
         handleState={handleState}
+        nome={nome}
       ></SearchComponent>
 
       {state === "" ? (
