@@ -85,7 +85,7 @@ CREATE TABLE TB_DESPESA(
     id_despesa serial PRIMARY KEY,
     data VARCHAR(10) NOT NULL,
     descricao VARCHAR(500) NOT NULL,
-    valor double precision NOT NULL,
+    valor double precision NOT NULL
 );
 
 CREATE TABLE TB_ORDEM_SERVICO(

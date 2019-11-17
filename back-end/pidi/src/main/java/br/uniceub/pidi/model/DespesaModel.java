@@ -16,7 +16,7 @@ public class DespesaModel {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "idDespesa")
+	@Column(name = "id_despesa")
 	private Long idDespesa;
 
 	@NotEmpty
