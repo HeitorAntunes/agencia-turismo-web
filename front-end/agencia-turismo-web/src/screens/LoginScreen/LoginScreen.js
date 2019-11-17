@@ -5,6 +5,7 @@ import personIcon from "../../assets/person-24px.svg";
 import passwordIcon from "../../assets/lock-24px.svg";
 import flightIcon from "../../assets/aeroplane.svg";
 import { withRouter } from "react-router-dom";
+import Backend from "../../service/backend";
 
 const LoginScreen = ({ history }) => {
   const [values, setValues] = React.useState({
@@ -12,14 +13,43 @@ const LoginScreen = ({ history }) => {
     senha: ""
   });
 
+  const request = new Backend();
+
   const handleChange = prop => event => {
     console.log(values);
     setValues({ ...values, [prop]: event.target.value });
   };
 
   const changeScreen = prop => {
-    history.push(prop);
+    const value = {
+      login: values.email,
+      password: values.senha
+    };
+
+    request
+      .post("/cadastro-user/login", value)
+      .then(res => {
+        if (res.status === 200) {
+          localStorage.setItem("user", JSON.stringify(res.data));
+          wait(2000);
+          history.push(prop);
+        } else {
+          alert(res.message);
+        }
+      })
+      .catch(res => {
+        debugger;
+        alert(res.response.data.message);
+      });
   };
+
+  function wait(ms) {
+    var start = new Date().getTime();
+    var end = start;
+    while (end < start + ms) {
+      end = new Date().getTime();
+    }
+  }
 
   return (
     <div className={styles.LoginScreen}>

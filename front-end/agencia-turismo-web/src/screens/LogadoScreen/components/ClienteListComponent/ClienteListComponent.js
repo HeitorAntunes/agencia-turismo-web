@@ -4,7 +4,7 @@ import styles from "./ClienteListComponent.module.css";
 import TableComponent from "../TableComponent/TableComponent";
 import Backend from "../../../../service/backend";
 
-const ClienteListComponent = ({handleState}) => {
+const ClienteListComponent = ({handleState, setTitle}) => {
   const [state, setState] = React.useState({});
   const [httpStatus, setHttpStatus] = React.useState();
   const [loading, setLoading] = React.useState(true);
@@ -21,6 +21,7 @@ const ClienteListComponent = ({handleState}) => {
   }
 
   useEffect(() => {
+    setTitle("Clientes")
     getAllClientes();
   }, []);
 

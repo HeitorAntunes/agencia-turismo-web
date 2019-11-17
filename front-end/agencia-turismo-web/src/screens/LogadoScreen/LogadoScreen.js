@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 import styles from "./LogadoScreen.module.css";
 import HeaderComponent from "../../components/HeaderComponent/HeaderComponent";
@@ -13,9 +13,23 @@ import FuncionarioListComponent from "./components/FuncionarioListComponent/Func
 import ClienteListComponent from "./components/ClienteListComponent/ClienteListComponent";
 import FornecedorListComponent from "./components/FornecedorListComponent/FornecedorListComponent";
 
-const LogadoScreen = () => {
+const LogadoScreen = ({ history }) => {
+  const [user, setUser] = React.useState({});
   const [state, setState] = React.useState({});
   const [title, setTitle] = React.useState("");
+
+  useEffect(() => {
+    var retrievedObject = localStorage.getItem("user");
+    setUser(JSON.parse(retrievedObject));
+  }, []);
+
+  useEffect(() => {
+    var retrievedObject = JSON.parse(localStorage.getItem("user"));
+    debugger;
+    if (retrievedObject === null) {
+      history.push("");
+    }
+  }, [user, state, title]);
 
   let match = useRouteMatch();
 
@@ -25,7 +39,7 @@ const LogadoScreen = () => {
 
   return (
     <div>
-      <HeaderComponent> </HeaderComponent>
+      <HeaderComponent userName={user.nome}> </HeaderComponent>
       <div className={styles.background}>
         <div className={styles.content}>
           <div className={styles.title}> {title} </div>

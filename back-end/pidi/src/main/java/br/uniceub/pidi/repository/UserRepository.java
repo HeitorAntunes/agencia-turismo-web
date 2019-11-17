@@ -9,5 +9,7 @@ import br.uniceub.pidi.model.UserModel;
 public interface UserRepository extends JpaRepository<UserModel, Long>{
 	
 	Optional<UserModel> findById (Long id);
+	
+	Optional<UserModel> findByLoginAndPassword(String email, String password);
 
 }
