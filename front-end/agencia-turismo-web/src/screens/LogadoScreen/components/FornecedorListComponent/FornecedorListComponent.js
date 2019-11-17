@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import styles from "./FornecedorListComponent.module.css";
 import TableComponent from "../TableComponent/TableComponent";
 import Backend from "../../../../service/backend";
+import CircularProgress from "@material-ui/core/CircularProgress";
 
 const FornecedorListComponent = ({ handleState }) => {
   const [state, setState] = React.useState({});
@@ -10,7 +11,7 @@ const FornecedorListComponent = ({ handleState }) => {
   const [loading, setLoading] = React.useState(true);
   const request = new Backend();
 
-  const header = ["idFornecedor", "nome", "cnpj", "ações"];
+  const header = ["idFornecedor", "nome", "cpf", "ações"];
 
   const getAllFornecedores = () => {
     request.getFornecedor().then(res => {
@@ -18,7 +19,7 @@ const FornecedorListComponent = ({ handleState }) => {
       setHttpStatus(res.status);
       setLoading(false);
     });
-  }
+  };
 
   useEffect(() => {
     getAllFornecedores();
@@ -29,15 +30,14 @@ const FornecedorListComponent = ({ handleState }) => {
     request.pesquisaFornecedor(value).then(res => {
       setState(res.data);
       setHttpStatus(res.status);
-      setLoading(false);    
+      setLoading(false);
     });
   };
 
   const deleteElement = value => {
-    console.log(value)
+    console.log(value);
     setLoading(true);
     request.delete("cadastro-fornecedor/" + value[header[0]]).then(res => {
-      setLoading(false);
       getAllFornecedores();
     });
   };
@@ -56,10 +56,15 @@ const FornecedorListComponent = ({ handleState }) => {
             handleState={handleState}
           />
         ) : (
-          <span>Erro</span>
+          <div className={styles.erro}>
+            <span>Erro ao obter dados! </span>
+            <span>Tente novamente mais tarte...</span>
+          </div>
         )
       ) : (
-        <span>Carregando...</span>
+        <div className={styles.carregando}>
+          <CircularProgress thickness={6} color="inherit" size={30} />
+        </div>
       )}
     </div>
   );

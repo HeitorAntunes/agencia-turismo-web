@@ -1,13 +1,19 @@
-import React, {useEffect} from 'react';
-import PropTypes from 'prop-types';
-import styles from './CadastroFornecedorComponent.module.css';
+import React, { useEffect } from "react";
+import PropTypes from "prop-types";
+import styles from "./CadastroFornecedorComponent.module.css";
 import InputField from "../../../../components/InputField/InputField";
 import Backend from "../../../../service/backend";
-import { withRouter} from "react-router";
+import { withRouter } from "react-router";
 
-
-const CadastroFornecedorComponent = ({ setTitle , history, state, handleState }) => {
+const CadastroFornecedorComponent = ({
+  setTitle,
+  history,
+  state,
+  handleState
+}) => {
   const request = new Backend();
+  const [isEdit, setEdit] = React.useState(false);
+
   const [values, setValues] = React.useState({
     nome: "",
     email: "",
@@ -28,28 +34,53 @@ const CadastroFornecedorComponent = ({ setTitle , history, state, handleState })
   };
 
   useEffect(() => {
-    if(state) {
-      setValues(state)
-    }
-  }, []);
-
-  useEffect(() => {
     setTitle("CADASTRO FORNECEDOR");
   }, []);
 
+  useEffect(() => {
+    if (state) {
+      setValues(state);
+      setEdit(true);
+    }
+  }, []);
+
   const onSubmit = () => {
-    const valor = {
-      ...values,
-      "idFornecedor": 0,
-    };
-    request.createFornecedor(valor)
-    .then(res => {
-      alert("Fornecedor cadastrado com sucesso!!");
-      history.push("/logado/fornecedor");
-    })
-    .catch(err => {
-      alert("Erro ao cadastrar, tente novamente!");
-    });
+    debugger;
+    if (!isEdit) {
+      const valor = {
+        ...values,
+        idFornecedor: 0,
+        id: {
+          id: 1
+        }
+      };
+      request
+        .createFornecedor(valor)
+        .then(res => {
+          alert("Fornecedor cadastrado com sucesso!!");
+          history.push("/logado/fornecedor");
+        })
+        .catch(err => {
+          alert("Erro ao cadastrar, tente novamente!");
+        });
+    } else {
+      const valor = {
+        ...values,
+        idFornecedor: state.idFornecedor,
+        id: {
+          id: 1
+        }
+      };
+      request
+        .update("/cadastro-Fornecedor", valor)
+        .then(res => {
+          alert("Fornecedor editado com sucesso!!");
+          history.push("/logado/fornecedor");
+        })
+        .catch(err => {
+          alert("Erro ao editar, tente novamente!");
+        });
+    }
   };
 
   return (
@@ -97,7 +128,7 @@ const CadastroFornecedorComponent = ({ setTitle , history, state, handleState })
           field={"endereco"}
           value={values.endereco}
         />
-       
+
         <span className={styles.nameField}>CEP</span>
         <InputField
           text={""}
@@ -153,4 +184,4 @@ CadastroFornecedorComponent.propTypes = {};
 
 CadastroFornecedorComponent.defaultProps = {};
 
-export default withRouter (CadastroFornecedorComponent);
+export default withRouter(CadastroFornecedorComponent);

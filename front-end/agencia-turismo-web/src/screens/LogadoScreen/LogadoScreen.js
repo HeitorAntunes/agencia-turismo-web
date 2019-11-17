@@ -14,16 +14,14 @@ import ClienteListComponent from "./components/ClienteListComponent/ClienteListC
 import FornecedorListComponent from "./components/FornecedorListComponent/FornecedorListComponent";
 
 const LogadoScreen = () => {
-
   const [state, setState] = React.useState({});
   const [title, setTitle] = React.useState("");
 
   let match = useRouteMatch();
 
-
-  const handleState = (data) => {
+  const handleState = data => {
     setState(data);
-  }
+  };
 
   return (
     <div>
@@ -33,34 +31,58 @@ const LogadoScreen = () => {
           <div className={styles.title}> {title} </div>
           <div className={styles.secondBackground}>
             <Switch>
-            <Route exact path={`${match.path}`}>
+              <Route exact path={`${match.path}`}>
                 <HomeComponent setTitle={setTitle} />
               </Route>
               <Route path={`${match.path}/cadastro-gerente`}>
-                <CadastroGerenteComponent setTitle={setTitle} state={state} handleState={handleState}/>
+                <CadastroGerenteComponent
+                  setTitle={setTitle}
+                  state={state}
+                  handleState={handleState}
+                />
               </Route>
               <Route path={`${match.path}/cadastro-atendente`}>
-                <CadastroAtendenteComponent setTitle={setTitle} state={state} handleState={handleState}/>
+                <CadastroAtendenteComponent
+                  setTitle={setTitle}
+                  state={state}
+                  handleState={handleState}
+                />
               </Route>
               <Route path={`${match.path}/cadastro-fornecedor`}>
-                <CadastroFornecedorComponent setTitle={setTitle} state={state} handleState={handleState}/>
+                <CadastroFornecedorComponent
+                  setTitle={setTitle}
+                  state={state}
+                  handleState={handleState}
+                />
               </Route>
               <Route path={`${match.path}/cadastro-cliente`}>
-                <CadastroClienteComponent setTitle={setTitle} state={state} handleState={handleState}/>
+                <CadastroClienteComponent
+                  setTitle={setTitle}
+                  state={state}
+                  handleState={handleState}
+                />
               </Route>
               <Route path={`${match.path}/atendente`}>
-                <FuncionarioListComponent setTitle={setTitle} handleState={handleState}/>
+                <FuncionarioListComponent
+                  setTitle={setTitle}
+                  handleState={handleState}
+                />
               </Route>
               <Route path={`${match.path}/cliente`}>
-                <ClienteListComponent setTitle={setTitle} handleState={handleState}/>
+                <ClienteListComponent
+                  setTitle={setTitle}
+                  handleState={handleState}
+                />
               </Route>
               <Route path={`${match.path}/fornecedor`}>
-                <FornecedorListComponent setTitle={setTitle} handleState={handleState}/>
+                <FornecedorListComponent
+                  setTitle={setTitle}
+                  handleState={handleState}
+                />
               </Route>
             </Switch>
-            </div>
-            <div className={styles.title}>
           </div>
+          <div className={styles.title}></div>
           <div className={styles.title}></div>
         </div>
       </div>

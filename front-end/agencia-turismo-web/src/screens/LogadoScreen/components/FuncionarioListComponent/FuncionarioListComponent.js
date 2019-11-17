@@ -37,11 +37,9 @@ const FuncionarioListComponent = ({ handleState }) => {
   const deleteElement = value => {
     console.log(value);
     setLoading(true);
-    request
-      .delete("cadastro-atendente/" + value[header[0]])
-      .then(res => {
-        getAllAtendentes();
-      })
+    request.delete("cadastro-atendente/" + value[header[0]]).then(res => {
+      getAllAtendentes();
+    });
   };
 
   return (
@@ -60,7 +58,7 @@ const FuncionarioListComponent = ({ handleState }) => {
         ) : (
           <div className={styles.erro}>
             <span>Erro ao obter dados! </span>
-            <span>Tente novamente mais tarte</span>
+            <span>Tente novamente mais tarte...</span>
           </div>
         )
       ) : (

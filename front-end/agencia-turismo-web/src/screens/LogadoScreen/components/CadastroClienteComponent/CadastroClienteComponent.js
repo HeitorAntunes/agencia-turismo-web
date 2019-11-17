@@ -2,11 +2,19 @@ import React, { useEffect } from "react";
 import styles from "./CadastroClienteComponent.module.css";
 import InputField from "../../../../components/InputField/InputField";
 import Backend from "../../../../service/backend";
-import { withRouter} from "react-router";
+import { withRouter } from "react-router";
 
-const CadastroClienteComponent = ({ setTitle, data, history, state, handleState }) => {
+const CadastroClienteComponent = ({
+  setTitle, 
+  data,
+  history,
+  state,
+  handleState
+}) => {
 
   const request = new Backend();
+
+  const [isEdit, setEdit] = React.useState(false);
 
   const [values, setValues] = React.useState({
     nome: "",
@@ -29,20 +37,22 @@ const CadastroClienteComponent = ({ setTitle, data, history, state, handleState 
   };
 
   useEffect(() => {
-    if(state) {
-      setValues(state)
-    }
-  }, []);
-
-  useEffect(() => {
     setTitle("CADASTRO CLIENTE");
   }, []);
 
+  useEffect(() => {
+    if(state) {
+      setValues(state);
+      setEdit(true);
+    }
+  }, []);
+
   const onSubmit = () => {
+    if (!isEdit) {
     const valor = {
       ...values,
-      "id_cliente": 0,
-      "id": {
+      idCliente: 0,
+      id: {
         id: 1
       }
     };
@@ -54,7 +64,26 @@ const CadastroClienteComponent = ({ setTitle, data, history, state, handleState 
     .catch(err => {
       alert("Erro ao cadastrar, tente novamente!");
     });
+} else {
+  
+  const valor = {
+    ...values,
+    idCliente: state.idCliente,
+    id: {
+      id: 1
+    }
   };
+  request.update("/cadastro-cliente", valor)
+  .then(res => {
+    alert("Cliente editado com sucesso!!");
+    history.push("/logado/cliente");
+  })
+  .catch(err => {
+    alert("Erro ao editar, tente novamente!");
+  });
+}
+};
+
 
   return (
     <div>

@@ -12,7 +12,6 @@ const CadastroAtendenteComponent = ({
   handleState
 }) => {
   const request = new Backend();
-
   const [isEdit, setEdit] = React.useState(false);
 
   const [values, setValues] = React.useState({
@@ -65,7 +64,6 @@ const CadastroAtendenteComponent = ({
           alert("Erro ao cadastrar, tente novamente!");
         });
     } else {
-      debugger;
       const valor = {
         ...values,
         idAtendente: state.idAtendente,
@@ -73,14 +71,15 @@ const CadastroAtendenteComponent = ({
           id: 1
         }
       };
-      request.update("/cadastro-atendente", valor)
-      .then(res => {
-        alert("Atendente editado com sucesso!!");
-        history.push("/logado/atendente");
-      })
-      .catch(err => {
-        alert("Erro ao editar, tente novamente!");
-      });
+      request
+        .update("/cadastro-atendente", valor)
+        .then(res => {
+          alert("Atendente editado com sucesso!!");
+          history.push("/logado/atendente");
+        })
+        .catch(err => {
+          alert("Erro ao editar, tente novamente!");
+        });
     }
   };
 
